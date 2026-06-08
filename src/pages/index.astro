@@ -24,7 +24,6 @@ const stack = [
   { nombre: "Git",        nivel: 90 },
 ];
 
-/* Items del marquee: duplicados exactos para loop continuo sin salto */
 const marqueeItems = [
   "Diseño Web", "Frontend", "Astro", "React", "TypeScript",
   "Node.js", "CSS", "UI/UX",
@@ -135,10 +134,7 @@ const marqueeItems = [
       }
       .nav-links a:hover { color: var(--text); }
 
-      /* HERO
-         Las animaciones del hero se controlan vía JS (classList) para evitar
-         el bug de opacity:0 que queda atascado en Astro dev mode.
-      */
+      /* HERO */
       .hero {
         position: relative; z-index: 1;
         min-height: 100vh;
@@ -168,25 +164,17 @@ const marqueeItems = [
         opacity: 0; transform: translateY(16px);
         transition: opacity 0.7s 0.3s var(--ease), transform 0.7s 0.3s var(--ease);
       }
-      /* Clase que JS añade para activar la transición */
-      .hero-eyebrow.show,
-      .hero-title.show,
-      .hero-bottom.show {
+      .hero-eyebrow.show, .hero-title.show, .hero-bottom.show {
         opacity: 1; transform: translateY(0);
       }
-
       .hero-title .line2 {
         display: block;
         -webkit-text-stroke: 1.5px rgba(255,255,255,0.4);
         color: transparent;
         transition: color 400ms, -webkit-text-stroke 400ms;
       }
-      .hero-title .line2:hover {
-        color: var(--text);
-        -webkit-text-stroke: 0px;
-      }
+      .hero-title .line2:hover { color: var(--text); -webkit-text-stroke: 0px; }
       .hero-title .accent { color: var(--accent); }
-
       .hero-desc {
         font-size: var(--text-base); color: var(--text);
         max-width: 380px; line-height: 1.75; opacity: 0.82;
@@ -204,8 +192,9 @@ const marqueeItems = [
       }
 
       /* MARQUEE
-         Velocidad: 50s para 8 items = ritmo cómodo de leer.
-         La duración ideal es ~6s por item visible.
+         La duración base (100s) es solo un fallback.
+         JS la sobreescribe calculando: duración = (anchoMitad / 80) segundos
+         para mantener siempre ~80px/s independientemente del tamaño de pantalla.
       */
       .marquee-wrap {
         position: relative; z-index: 1;
@@ -216,9 +205,9 @@ const marqueeItems = [
       }
       .marquee-track {
         display: flex; gap: 4rem; white-space: nowrap; width: max-content;
-        animation: marquee 50s linear infinite; /* 50s = relajado, legible */
+        animation: marquee 100s linear infinite;
       }
-      .marquee-track:hover { animation-play-state: paused; } /* pausa al hover */
+      .marquee-track:hover { animation-play-state: paused; }
       .marquee-item {
         font-family: var(--font-display);
         font-size: var(--text-sm); font-weight: 700;
@@ -389,8 +378,7 @@ const marqueeItems = [
         letter-spacing: -0.01em;
       }
       .contact-email:hover {
-        border-color: var(--accent); background: var(--accent);
-        color: #060606;
+        border-color: var(--accent); background: var(--accent); color: #060606;
       }
       .contact-email .arrow { transition: transform 280ms var(--ease); }
       .contact-email:hover .arrow { transform: translate(3px,-3px); }
@@ -404,14 +392,13 @@ const marqueeItems = [
         font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.04em;
       }
 
-      /* REVEAL (secciones) */
+      /* REVEAL */
       .reveal {
         opacity: 0; transform: translateY(28px);
         transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
       }
       .reveal.visible { opacity: 1; transform: translateY(0); }
 
-      /* KEYFRAMES */
       @keyframes marquee {
         from { transform: translateX(0); }
         to   { transform: translateX(-50%); }
@@ -428,7 +415,6 @@ const marqueeItems = [
         }
       }
 
-      /* MOBILE */
       @media (max-width: 768px) {
         nav { padding: 1.125rem 1.5rem; }
         .nav-links { display: none; }
@@ -479,9 +465,8 @@ const marqueeItems = [
       </div>
     </section>
 
-    <!-- MARQUEE: dos copias idénticas para loop sin salto visual -->
     <div class="marquee-wrap">
-      <div class="marquee-track">
+      <div class="marquee-track" id="marquee-track">
         {[...marqueeItems, ...marqueeItems].map((item) => (
           <span class="marquee-item">{item}</span>
         ))}
@@ -601,8 +586,7 @@ const marqueeItems = [
         requestAnimationFrame(animRing);
       })();
 
-      // HERO ANIMATIONS via JS (evita bug opacity:0 en Astro dev mode)
-      // Activamos con requestAnimationFrame para garantizar que el DOM esta pintado
+      // HERO ANIMATIONS
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           document.getElementById('he').classList.add('show');
@@ -610,6 +594,21 @@ const marqueeItems = [
           setTimeout(() => document.getElementById('hb').classList.add('show'), 300);
         });
       });
+
+      // MARQUEE: velocidad fija en px/s (independiente del ancho total del track)
+      // Velocidad objetivo: 80px/s -> si el track mide 2000px, duracion = 2000/80 = 25s
+      // Usamos scrollWidth/2 porque el track tiene los items duplicados (loop -50%)
+      (function setMarqueeSpeed() {
+        const PX_PER_SEC = 80; // ajusta este valor para cambiar la velocidad
+        const track = document.getElementById('marquee-track');
+        if (!track) return;
+        // Esperamos a que el navegador haya calculado el ancho real
+        requestAnimationFrame(() => {
+          const halfWidth = track.scrollWidth / 2;
+          const duration  = halfWidth / PX_PER_SEC;
+          track.style.animationDuration = duration.toFixed(2) + 's';
+        });
+      })();
 
       // CANVAS
       const canvas = document.getElementById('hero-canvas');
