@@ -1,17 +1,414 @@
 ---
+const nombre = "Miguel Ángel";
+const rol = "Desarrollador Web";
+const descripcion = "Construyo experiencias web modernas, limpias y funcionales. Apasionado por el código limpio y el buen diseño.";
 
+const proyectos = [
+  {
+    titulo: "marp0604-portfolio",
+    descripcion: "Mi portfolio personal construido con Astro. Diseño minimalista y rendimiento al máximo.",
+    tecnologias: ["Astro", "CSS", "TypeScript"],
+    url: "https://github.com/marp0604/marp0604-portfolio",
+  },
+];
+
+const stack = [
+  "HTML", "CSS", "JavaScript", "TypeScript",
+  "Astro", "React", "Node.js", "Git", "GitHub",
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Titulo</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={descripcion} />
+    <title>{nombre} · {rol}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #0f0f0f;
+        --surface: #161616;
+        --border: rgba(255,255,255,0.08);
+        --text: #e8e6e1;
+        --muted: #7a7976;
+        --accent: #4f98a3;
+        --accent-hover: #3d7f8a;
+        --font-body: 'Inter', sans-serif;
+        --font-display: 'Instrument Serif', Georgia, serif;
+        --radius: 0.75rem;
+        --max-w: 800px;
+      }
+
+      html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--text);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 2rem;
+        background: rgba(15,15,15,0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        color: var(--text);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 180ms;
+      }
+
+      .nav-links a:hover { color: var(--text); }
+
+      /* MAIN */
+      main { padding-top: 5rem; }
+
+      section {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 5rem 2rem;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+      }
+
+      .hero-tag {
+        display: inline-block;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+      }
+
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.5rem;
+        color: #f0ede8;
+      }
+
+      .hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .hero-desc {
+        font-size: 1.1rem;
+        color: var(--muted);
+        max-width: 520px;
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius);
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 180ms;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border: 1px solid transparent;
+      }
+
+      .btn-primary:hover { background: var(--accent-hover); }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-ghost:hover {
+        border-color: rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.04);
+      }
+
+      /* DIVIDER */
+      .divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 0;
+      }
+
+      /* SECTION TITLES */
+      .section-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+      }
+
+      h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        color: #f0ede8;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+
+      /* SOBRE MÍ */
+      .about-text {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 620px;
+        line-height: 1.8;
+      }
+
+      .about-text strong { color: var(--text); font-weight: 500; }
+
+      /* PROYECTOS */
+      .proyectos-grid {
+        display: grid;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .proyecto-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.75rem;
+        text-decoration: none;
+        display: block;
+        transition: border-color 180ms, transform 180ms;
+      }
+
+      .proyecto-card:hover {
+        border-color: rgba(79,152,163,0.4);
+        transform: translateY(-2px);
+      }
+
+      .proyecto-titulo {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+      }
+
+      .proyecto-desc {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .proyecto-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.65rem;
+        border-radius: 999px;
+        background: rgba(79,152,163,0.12);
+        color: var(--accent);
+        border: 1px solid rgba(79,152,163,0.2);
+        font-weight: 500;
+      }
+
+      /* STACK */
+      .stack-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.5rem;
+      }
+
+      .stack-item {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.9rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--muted);
+        transition: color 180ms, border-color 180ms;
+      }
+
+      .stack-item:hover {
+        color: var(--text);
+        border-color: rgba(255,255,255,0.2);
+      }
+
+      /* CONTACTO */
+      .contacto-text {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 520px;
+        margin-bottom: 2rem;
+        line-height: 1.8;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--border);
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 600px) {
+        nav { padding: 1rem 1.25rem; }
+        .nav-links { gap: 1.25rem; }
+        section { padding: 3.5rem 1.25rem; }
+        .hero { min-height: 80vh; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav>
+      <a href="/" class="nav-logo">{nombre}</a>
+      <ul class="nav-links">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <main>
+
+      <!-- HERO -->
+      <section class="hero">
+        <span class="hero-tag">Disponible para proyectos</span>
+        <h1>Hola, soy<br /><em>{nombre}</em></h1>
+        <p class="hero-desc">{descripcion}</p>
+        <div class="hero-cta">
+          <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+          <a href="#contacto" class="btn btn-ghost">Contactar</a>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- SOBRE MÍ -->
+      <section id="sobre-mi">
+        <p class="section-label">Sobre mí</p>
+        <h2>Quién soy</h2>
+        <p class="about-text">
+          Soy <strong>Miguel Ángel</strong>, desarrollador web con pasión por crear productos digitales que funcionen bien y se vean mejor.
+          Me gusta trabajar en el <strong>frontend</strong> aunque me manejo con comodidad en todo el stack.
+          Cuando no estoy programando, estoy aprendiendo algo nuevo.
+        </p>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- PROYECTOS -->
+      <section id="proyectos">
+        <p class="section-label">Trabajo</p>
+        <h2>Proyectos</h2>
+        <div class="proyectos-grid">
+          {proyectos.map((p) => (
+            <a href={p.url} target="_blank" rel="noopener noreferrer" class="proyecto-card">
+              <p class="proyecto-titulo">{p.titulo}</p>
+              <p class="proyecto-desc">{p.descripcion}</p>
+              <div class="proyecto-tags">
+                {p.tecnologias.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- STACK -->
+      <section id="stack">
+        <p class="section-label">Tecnologías</p>
+        <h2>Stack</h2>
+        <div class="stack-grid">
+          {stack.map((s) => <span class="stack-item">{s}</span>)}
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- CONTACTO -->
+      <section id="contacto">
+        <p class="section-label">Contacto</p>
+        <h2>Hablemos</h2>
+        <p class="contacto-text">
+          Si tienes un proyecto en mente o simplemente quieres hablar de tecnología,
+          puedes escribirme directamente. Suelo responder rápido.
+        </p>
+        <a href="mailto:contacto@marp0604.com" class="btn btn-primary">
+          contacto@marp0604.com
+        </a>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>© {new Date().getFullYear()} {nombre} · Hecho con Astro</p>
+    </footer>
+
+  </body>
 </html>
