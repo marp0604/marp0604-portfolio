@@ -116,9 +116,8 @@ const jsonLd = {
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <!-- Cabinet Grotesk (Fontshare) — display · bold, readable, less overexposed than Syne -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800,900&f[]=satoshi@400,500,600&display=swap" rel="stylesheet" />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
@@ -136,8 +135,8 @@ const jsonLd = {
         --faint:        #555552;
         --accent:       #c8f060;
         --accent2:      #60d0f0;
-        --font-body:    'Inter', system-ui, sans-serif;
-        --font-display: 'Syne', sans-serif;
+        --font-body:    'Satoshi', system-ui, sans-serif;
+        --font-display: 'Cabinet Grotesk', sans-serif;
         --ease:         cubic-bezier(0.16, 1, 0.3, 1);
         --text-xs:      clamp(0.75rem,  0.7rem  + 0.25vw, 0.8125rem);
         --text-sm:      clamp(0.875rem, 0.85rem + 0.25vw, 0.9375rem);
@@ -212,7 +211,7 @@ const jsonLd = {
       }
       .nav-logo {
         font-family: var(--font-display); font-size: var(--text-base);
-        font-weight: 800; color: var(--text);
+        font-weight: 900; color: var(--text);
         text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
       }
       .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
@@ -331,7 +330,7 @@ const jsonLd = {
       .hero-title {
         font-family: var(--font-display);
         font-size: var(--text-hero);
-        font-weight: 800; line-height: 0.95;
+        font-weight: 900; line-height: 0.95;
         letter-spacing: -0.04em; color: var(--text);
         margin-bottom: 2.5rem;
         opacity: 0; transform: translateY(16px);
@@ -356,7 +355,7 @@ const jsonLd = {
       .hero-title .accent { color: var(--accent); }
       .hero-desc {
         font-size: var(--text-base); color: var(--text);
-        max-width: 400px; line-height: 1.8; opacity: 0.82;
+        max-width: 400px; line-height: 1.8; opacity: 0.72;
       }
       .hero-scroll {
         display: flex; flex-direction: column;
@@ -410,7 +409,7 @@ const jsonLd = {
       .section-title {
         font-family: var(--font-display);
         font-size: clamp(2.25rem, 5vw, 4.5rem);
-        font-weight: 800; letter-spacing: -0.03em;
+        font-weight: 900; letter-spacing: -0.03em;
         color: var(--text); line-height: 1;
       }
 
@@ -609,7 +608,7 @@ const jsonLd = {
       .contact-title {
         font-family: var(--font-display);
         font-size: clamp(3rem, 8vw, 7rem);
-        font-weight: 800; letter-spacing: -0.04em;
+        font-weight: 900; letter-spacing: -0.04em;
         line-height: 1; color: var(--text); margin-bottom: 3rem;
       }
       .contact-title span {
@@ -794,7 +793,7 @@ const jsonLd = {
           <span class="line2">productos<span class="accent" aria-hidden="true">.</span></span>
         </h1>
         <div class="hero-bottom" id="hb">
-          <p class="hero-desc">Interfaces rápidas en web, apps nativas en móvil. Base sólida en programación y criterio de diseño en cada decisión.</p>
+          <p class="hero-desc">Web rápida, apps nativas, código que aguanta. Sin librerías de componentes, sin atajos.</p>
           <div class="hero-scroll" aria-hidden="true">
             <div class="scroll-line"></div>
             <span>Scroll</span>
@@ -1080,7 +1079,6 @@ const jsonLd = {
         hamburgerBtn.setAttribute('aria-label', 'Cerrar menú de navegación');
         mobileOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
-        // Focus first link for accessibility
         const firstLink = mobileOverlay.querySelector('a');
         if (firstLink) firstLink.focus();
       }
