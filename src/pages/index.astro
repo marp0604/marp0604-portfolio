@@ -8,17 +8,37 @@ const ogImage = "https://marp0604.com/og-image.png";
 const experiencia = [
   {
     empresa: "Farmacias.com",
-    rol: "Desarrollador Frontend",
-    periodo: "2026 — Presente",
-    ubicacion: "Almería, España",
-    descripcion: "Desarrollo de interfaces web en un entorno de producto real. Trabajo con tecnologías modernas del ecosistema frontend con foco en rendimiento, accesibilidad y mantenibilidad del código.",
+    rol: "Desarrollador",
+    periodo: "Mayo 2026 — Presente",
+    ubicacion: "Aguadulce, Almería",
+    descripcion: "Incorporación como desarrollador tras las prácticas. Mantenimiento, mejora y desarrollo de nuevas funcionalidades en la plataforma de e-commerce. Trabajo con entorno de producto real, enfocado en calidad de código y estabilidad.",
   },
   {
-    empresa: "IES Celia Viñas",
-    rol: "DAM — Desarrollo de Aplicaciones Multiplataforma",
-    periodo: "2023 — 2025",
-    ubicacion: "Almería, España",
-    descripcion: "Formación técnica en programación orientada a objetos, estructuras de datos, bases de datos y desarrollo multiplataforma. Base que aplico directamente en el trabajo diario como frontend.",
+    empresa: "Farmacias.com",
+    rol: "Desarrollador en prácticas",
+    periodo: "Feb. 2026 — Mayo 2026",
+    ubicacion: "Aguadulce, Almería",
+    descripcion: "Prácticas de formación dual en una plataforma online de farmacia. Mantenimiento y actualización del sistema, resolución de incidencias técnicas y colaboración en el desarrollo de mejoras para el sitio.",
+  },
+  {
+    empresa: "Adelantia IT Solutions",
+    rol: "Técnico en prácticas",
+    periodo: "Mar. 2022 — Jun. 2022",
+    ubicacion: "Almería",
+    descripcion: "Prácticas de ciclo medio en empresa de servicios IT. Administración y mantenimiento de equipos, instalación de sistemas operativos, configuración de redes y soporte técnico. Primer contacto profesional con entornos reales de trabajo.",
+  },
+];
+
+const formacion = [
+  {
+    centro: "IES Celia Viñas",
+    titulo: "CFGS — Desarrollo de Aplicaciones Multiplataforma (DAM)",
+    periodo: "2022 — 2025",
+  },
+  {
+    centro: "IES Celia Viñas",
+    titulo: "CFGM — Sistemas Microinformáticos y Redes (SMR)",
+    periodo: "2019 — 2022",
   },
 ];
 
@@ -393,6 +413,28 @@ const jsonLd = {
       }
       .exp-ubicacion { font-size: var(--text-xs); color: var(--faint); letter-spacing: 0.06em; }
 
+      /* Formación */
+      .edu-list { display: flex; flex-direction: column; }
+      .edu-item {
+        display: grid; grid-template-columns: 1fr 160px;
+        gap: 3rem; padding: 2.25rem 0;
+        border-top: 1px solid var(--border); align-items: baseline;
+      }
+      .edu-item:last-child { border-bottom: 1px solid var(--border); }
+      .edu-titulo {
+        font-family: var(--font-display);
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        font-weight: 700; color: var(--text);
+        letter-spacing: -0.02em; margin-bottom: 0.2rem;
+      }
+      .edu-centro {
+        font-size: var(--text-sm); color: var(--muted); font-weight: 500;
+      }
+      .edu-periodo {
+        font-size: var(--text-sm); color: var(--muted);
+        font-variant-numeric: tabular-nums; text-align: right;
+      }
+
       .proyecto-item {
         display: grid; grid-template-columns: 64px 1fr 2rem;
         gap: 3rem; align-items: center;
@@ -575,6 +617,8 @@ const jsonLd = {
         .about-grid { grid-template-columns: 1fr; gap: 3rem; }
         .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
         .exp-meta { text-align: left; }
+        .edu-item { grid-template-columns: 1fr; gap: 0.4rem; }
+        .edu-periodo { text-align: left; }
         .proyecto-item { grid-template-columns: 52px 1fr; gap: 1.5rem; }
         .proyecto-arrow { display: none; }
         .stack-grupos { grid-template-columns: 1fr; }
@@ -666,7 +710,7 @@ const jsonLd = {
                 y no pienso <em>irme</em>.
               </p>
               <p class="about-bio">
-                Estudié Desarrollo de Aplicaciones Multiplataforma en el IES Celia Viñas de Almería. Allí aprendí a programar de verdad: algoritmos, estructuras de datos, orientación a objetos, lógica sin atajos. Después descubrí el frontend y encontré el lugar donde esa base importa más: interfaces que no solo se ven bien, sino que están bien construidas.
+                Estudié DAM en el IES Celia Viñas de Almería. Allí aprendí a programar de verdad: algoritmos, estructuras de datos, orientación a objetos, lógica sin atajos. Después descubrí el frontend y encontré el lugar donde esa base importa más: interfaces que no solo se ven bien, sino que están bien construidas. Hoy trabajo como desarrollador en Farmacias.com, construyendo producto real cada día.
               </p>
               <div class="about-links">
                 <a href="https://github.com/marp0604" target="_blank" rel="noopener noreferrer" class="about-link" aria-label="Perfil de GitHub (abre en nueva pestaña)">
@@ -693,8 +737,8 @@ const jsonLd = {
                 <p class="about-detail-value">Almería, España</p>
               </div>
               <div class="about-detail-item">
-                <p class="about-detail-label">Situación</p>
-                <p class="about-detail-value">Trabajando · Abierto a oportunidades</p>
+                <p class="about-detail-label">Empresa</p>
+                <p class="about-detail-value">Farmacias.com · Presente</p>
               </div>
               <div class="about-detail-item">
                 <p class="about-detail-label">Email</p>
@@ -725,6 +769,21 @@ const jsonLd = {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div style="margin-top: 5rem;">
+            <p class="section-num" style="margin-bottom: 2.5rem; display: block;">Formación</p>
+            <div class="edu-list">
+              {formacion.map((f) => (
+                <div class="edu-item reveal">
+                  <div>
+                    <p class="edu-titulo">{f.titulo}</p>
+                    <p class="edu-centro">{f.centro}</p>
+                  </div>
+                  <p class="edu-periodo">{f.periodo}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
