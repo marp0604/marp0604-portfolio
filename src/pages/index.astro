@@ -1,4 +1,4 @@
----
+
 const nombre = "Miguel Ángel";
 const rol = "Desarrollador Multiplataforma";
 const descripcion = "Construyo productos digitales que funcionan en cualquier plataforma. Base sólida en programación, especializado en frontend con Astro, React y TypeScript, y expandiéndome hacia móvil con Kotlin Multiplatform.";
@@ -98,6 +98,9 @@ const jsonLd = {
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- FIX 1: theme-color para barra del navegador en móvil -->
+    <meta name="theme-color" content="#080808" />
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={`Miguel Ángel Ramírez Pérez — ${rol}`} />
@@ -146,12 +149,16 @@ const jsonLd = {
       }
 
       html {
-        scroll-behavior: smooth;
+        /* FIX 2: smooth scroll solo donde está soportado nativamente (Safari fix) */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
         scroll-padding-top: 5rem;
         cursor: none;
+      }
+
+      @supports (scroll-behavior: smooth) {
+        html { scroll-behavior: smooth; }
       }
 
       body {
@@ -426,8 +433,9 @@ const jsonLd = {
       }
       .about-statement em { color: var(--accent); font-style: normal; }
       .about-bio {
+        /* FIX 3: eliminado max-width fijo, el grid ya controla el ancho */
         font-size: var(--text-base); color: var(--muted);
-        line-height: 1.85; max-width: 54ch;
+        line-height: 1.85;
         margin-bottom: 2.5rem;
       }
       .about-links { display: flex; gap: 1rem; flex-wrap: wrap; }
