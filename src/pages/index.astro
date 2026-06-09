@@ -1,17 +1,24 @@
 ---
 const nombre = "Miguel Ángel";
 const rol = "Desarrollador Frontend";
-const descripcion = "Desarrollador Frontend especializado en Astro, React y TypeScript. Construyo interfaces modernas, rápidas y accesibles. Disponible para proyectos freelance desde España.";
+const descripcion = "Desarrollador Frontend con base sólida en programación. Especializado en Astro, React y TypeScript. Construyo interfaces rápidas, accesibles y con criterio de diseño.";
 const canonicalURL = "https://marp0604.com/";
 const ogImage = "https://marp0604.com/og-image.png";
 
 const proyectos = [
   {
+    titulo: "Vexelplaypro",
+    descripcion: "Plataforma web personal en desarrollo. Proyecto propio que nació en web y evolucionará hacia multiplataforma con Kotlin Multiplatform.",
+    tecnologias: ["React", "TypeScript", "KMP"],
+    url: "https://github.com/marp0604",
+    num: "01",
+  },
+  {
     titulo: "marp0604-portfolio",
-    descripcion: "Portfolio personal construido con Astro. Diseño de alto impacto visual con animaciones CSS y canvas.",
+    descripcion: "Portfolio personal construido con Astro. Diseño de alto impacto visual con animaciones CSS y canvas. Código abierto.",
     tecnologias: ["Astro", "CSS", "TypeScript"],
     url: "https://github.com/marp0604/marp0604-portfolio",
-    num: "01",
+    num: "02",
   },
 ];
 
@@ -34,11 +41,11 @@ const marqueeItems = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Miguel Ángel Ramírez",
+  "name": "Miguel Ángel",
   "url": canonicalURL,
   "jobTitle": "Desarrollador Frontend",
   "description": descripcion,
-  "knowsAbout": ["HTML", "CSS", "JavaScript", "TypeScript", "Astro", "React", "Node.js", "Git"],
+  "knowsAbout": ["HTML", "CSS", "JavaScript", "TypeScript", "Astro", "React", "Node.js", "Git", "Kotlin Multiplatform"],
   "nationality": "ES",
   "sameAs": [
     "https://github.com/marp0604"
@@ -128,7 +135,7 @@ const jsonLd = {
 
       /* Skip link */
       .skip-link {
-        position: absolute; top: -100%; left: var(--space-4, 1rem);
+        position: absolute; top: -100%; left: 1rem;
         background: var(--accent); color: #060606;
         padding: 0.5rem 1rem; border-radius: 0 0 4px 4px;
         font-weight: 700; font-size: var(--text-sm);
@@ -181,7 +188,7 @@ const jsonLd = {
         font-weight: 800; color: var(--text);
         text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
       }
-      .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+      .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
       .nav-links a {
         color: var(--muted); text-decoration: none;
         font-size: var(--text-sm); letter-spacing: 0.08em;
@@ -189,6 +196,17 @@ const jsonLd = {
         transition: color 200ms;
       }
       .nav-links a:hover { color: var(--text); }
+      .nav-github {
+        display: flex; align-items: center; gap: 0.4rem;
+        color: var(--muted) !important;
+        border: 1px solid var(--border);
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        transition: border-color 200ms, color 200ms !important;
+        text-transform: none !important;
+        letter-spacing: 0 !important;
+      }
+      .nav-github:hover { color: var(--text) !important; border-color: var(--border-hover); }
 
       /* HERO */
       .hero {
@@ -306,6 +324,11 @@ const jsonLd = {
         color: var(--text); letter-spacing: -0.02em;
       }
       .about-text-large em { color: var(--accent); font-style: normal; }
+      .about-bio {
+        margin-top: 2rem;
+        font-size: var(--text-base); color: var(--muted);
+        line-height: 1.8; max-width: 52ch;
+      }
       .about-details { display: flex; flex-direction: column; gap: 1.75rem; }
       .about-detail-item { border-top: 1px solid var(--border); padding-top: 1.25rem; }
       .about-detail-label {
@@ -317,6 +340,11 @@ const jsonLd = {
         font-size: var(--text-base); color: var(--text);
         font-weight: 500; line-height: 1.5;
       }
+      .about-detail-value a {
+        color: var(--accent); text-decoration: none;
+        transition: opacity 200ms;
+      }
+      .about-detail-value a:hover { opacity: 0.75; }
 
       /* PROYECTOS */
       .proyecto-item {
@@ -350,6 +378,14 @@ const jsonLd = {
         font-family: var(--font-display);
         font-size: clamp(1.25rem, 2.5vw, 1.875rem);
         font-weight: 800; color: var(--text); letter-spacing: -0.025em;
+      }
+      .proyecto-badge {
+        font-size: var(--text-xs); padding: 0.15rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(200,240,96,0.1);
+        border: 1px solid rgba(200,240,96,0.25);
+        color: var(--accent); font-weight: 600;
+        letter-spacing: 0.06em;
       }
       .proyecto-tags2 { display: flex; gap: 0.375rem; flex-wrap: wrap; }
       .tag2 {
@@ -443,6 +479,12 @@ const jsonLd = {
         display: flex; justify-content: space-between; align-items: center;
         font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.04em;
       }
+      .footer-github {
+        display: flex; align-items: center; gap: 0.5rem;
+        color: var(--muted); text-decoration: none;
+        transition: color 200ms;
+      }
+      .footer-github:hover { color: var(--text); }
 
       /* REVEAL */
       .reveal {
@@ -501,6 +543,20 @@ const jsonLd = {
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#stack">Stack</a></li>
         <li><a href="#contacto">Contacto</a></li>
+        <li>
+          <a
+            href="https://github.com/marp0604"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-github"
+            aria-label="Perfil de GitHub (abre en nueva pestaña)"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+            </svg>
+            GitHub
+          </a>
+        </li>
       </ul>
     </nav>
 
@@ -537,27 +593,40 @@ const jsonLd = {
             <h2 class="section-title" id="title-sobre-mi">Quién soy</h2>
           </div>
           <div class="about-grid">
-            <p class="about-text-large reveal">
-              Soy <em>Miguel Ángel</em>, desarrollador web
-              con pasión por crear productos digitales
-              que funcionen bien <em>y se vean mejor</em>.
-            </p>
+            <div>
+              <p class="about-text-large reveal">
+                Vengo de <em>programación</em>, aterricé en la web
+                y no pienso <em>irme</em>.
+              </p>
+              <p class="about-bio reveal">
+                Estudié Desarrollo de Aplicaciones Multiplataforma, donde aprendí a programar de verdad — algoritmos, estructuras de datos, orientación a objetos, lógica sin atajos. Después descubrí el frontend y encontré el sitio donde esa base importa más: interfaces que no solo se ven bien, sino que están bien construidas.
+              </p>
+            </div>
             <div class="about-details reveal">
               <div class="about-detail-item">
                 <p class="about-detail-label">Especialidad</p>
-                <p class="about-detail-value">Frontend &amp; Fullstack</p>
+                <p class="about-detail-value">Frontend — Astro, React, TypeScript</p>
+              </div>
+              <div class="about-detail-item">
+                <p class="about-detail-label">Formación</p>
+                <p class="about-detail-value">DAM — Desarrollo de Aplicaciones Multiplataforma</p>
               </div>
               <div class="about-detail-item">
                 <p class="about-detail-label">Disponibilidad</p>
-                <p class="about-detail-value">Freelance &amp; Proyectos</p>
+                <p class="about-detail-value">Abierto a oportunidades</p>
               </div>
               <div class="about-detail-item">
-                <p class="about-detail-label">Ubicación</p>
-                <p class="about-detail-value">España</p>
-              </div>
-              <div class="about-detail-item">
-                <p class="about-detail-label">Email</p>
-                <p class="about-detail-value">contacto@marp0604.com</p>
+                <p class="about-detail-label">GitHub</p>
+                <p class="about-detail-value">
+                  <a
+                    href="https://github.com/marp0604"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver perfil de GitHub marp0604 (abre en nueva pestaña)"
+                  >
+                    github.com/marp0604
+                  </a>
+                </p>
               </div>
             </div>
           </div>
@@ -581,6 +650,7 @@ const jsonLd = {
                 <div class="proyecto-info">
                   <div class="proyecto-title-row">
                     <span class="proyecto-name">{p.titulo}</span>
+                    {p.num === "01" && <span class="proyecto-badge">En desarrollo</span>}
                     <div class="proyecto-tags2" aria-label="Tecnologías">
                       {p.tecnologias.map((t) => <span class="tag2">{t}</span>)}
                     </div>
@@ -640,6 +710,18 @@ const jsonLd = {
 
     <footer>
       <span>© {new Date().getFullYear()} Miguel Ángel</span>
+      <a
+        href="https://github.com/marp0604"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-github"
+        aria-label="Ver perfil de GitHub (abre en nueva pestaña)"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+        </svg>
+        marp0604
+      </a>
       <span>Hecho con Astro ✦</span>
     </footer>
 
