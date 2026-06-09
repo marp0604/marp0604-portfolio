@@ -28,6 +28,11 @@ const marqueeItems = [
   "Diseño Web", "Frontend", "Astro", "React", "TypeScript",
   "Node.js", "CSS", "UI/UX",
 ];
+
+// Email ofuscado: se reconstruye en el cliente vía JS para evitar scraping
+// El HTML estático nunca expone la dirección directamente
+const emailUser = "contacto";
+const emailDomain = "marp0604.com";
 ---
 
 <!DOCTYPE html>
@@ -36,7 +41,7 @@ const marqueeItems = [
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
+    <!-- generator tag eliminado: no exponer versión de Astro públicamente -->
     <meta name="description" content={descripcion} />
     <title>{nombre} · {rol}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -191,11 +196,7 @@ const marqueeItems = [
         animation: scrollPulse 2.5s ease-in-out infinite;
       }
 
-      /* MARQUEE
-         La duración base (100s) es solo un fallback.
-         JS la sobreescribe calculando: duración = (anchoMitad / 80) segundos
-         para mantener siempre ~80px/s independientemente del tamaño de pantalla.
-      */
+      /* MARQUEE */
       .marquee-wrap {
         position: relative; z-index: 1;
         border-top: 1px solid var(--border);
@@ -376,6 +377,8 @@ const marqueeItems = [
         padding: 1.125rem 2.5rem; border-radius: 999px;
         transition: border-color 300ms, background 300ms, color 300ms;
         letter-spacing: -0.01em;
+        cursor: pointer; background: none;
+        font: inherit;
       }
       .contact-email:hover {
         border-color: var(--accent); background: var(--accent); color: #060606;
@@ -501,7 +504,8 @@ const marqueeItems = [
             </div>
             <div class="about-detail-item">
               <p class="about-detail-label">Email</p>
-              <p class="about-detail-value">contacto@marp0604.com</p>
+              <!-- Email renderizado por JS para evitar scraping de bots -->
+              <p class="about-detail-value" id="email-display">·····</p>
             </div>
           </div>
         </div>
@@ -555,10 +559,11 @@ const marqueeItems = [
           ¿Tienes un proyecto
           <span>en mente?</span>
         </h2>
-        <a href="mailto:contacto@marp0604.com" class="contact-email reveal">
-          contacto@marp0604.com
+        <!-- Botón de email: href y texto se inyectan via JS para evitar scraping -->
+        <button class="contact-email reveal" id="contact-btn" aria-label="Enviar email de contacto">
+          <span id="contact-btn-text">·····</span>
           <span class="arrow">↗</span>
-        </a>
+        </button>
       </div>
 
     </div>
@@ -569,7 +574,30 @@ const marqueeItems = [
     </footer>
 
     <script>
-      // CURSOR
+      // ── EMAIL OBFUSCATION ──────────────────────────────────────────────────
+      // Las partes del email se ensamblan en runtime para que los bots
+      // que parsean HTML estático no encuentren la dirección completa.
+      (function () {
+        const u = 'contacto';
+        const d = 'marp0604' + '.' + 'com';
+        const email = u + '@' + d;
+
+        // Mostrar en sección "sobre mí"
+        const display = document.getElementById('email-display');
+        if (display) display.textContent = email;
+
+        // Botón de contacto
+        const btn = document.getElementById('contact-btn');
+        const btnText = document.getElementById('contact-btn-text');
+        if (btn && btnText) {
+          btnText.textContent = email;
+          btn.addEventListener('click', () => {
+            window.location.href = 'mailto:' + email;
+          });
+        }
+      })();
+
+      // ── CURSOR ────────────────────────────────────────────────────────────
       const cursor = document.getElementById('cursor');
       const ring   = document.getElementById('cursor-ring');
       let mx = 0, my = 0, rx = 0, ry = 0;
@@ -586,7 +614,7 @@ const marqueeItems = [
         requestAnimationFrame(animRing);
       })();
 
-      // HERO ANIMATIONS
+      // ── HERO ANIMATIONS ───────────────────────────────────────────────────
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           document.getElementById('he').classList.add('show');
@@ -595,14 +623,11 @@ const marqueeItems = [
         });
       });
 
-      // MARQUEE: velocidad fija en px/s (independiente del ancho total del track)
-      // Velocidad objetivo: 80px/s -> si el track mide 2000px, duracion = 2000/80 = 25s
-      // Usamos scrollWidth/2 porque el track tiene los items duplicados (loop -50%)
+      // ── MARQUEE SPEED ─────────────────────────────────────────────────────
       (function setMarqueeSpeed() {
-        const PX_PER_SEC = 80; // ajusta este valor para cambiar la velocidad
+        const PX_PER_SEC = 80;
         const track = document.getElementById('marquee-track');
         if (!track) return;
-        // Esperamos a que el navegador haya calculado el ancho real
         requestAnimationFrame(() => {
           const halfWidth = track.scrollWidth / 2;
           const duration  = halfWidth / PX_PER_SEC;
@@ -610,7 +635,7 @@ const marqueeItems = [
         });
       })();
 
-      // CANVAS
+      // ── CANVAS ────────────────────────────────────────────────────────────
       const canvas = document.getElementById('hero-canvas');
       const ctx    = canvas.getContext('2d');
       let W = canvas.width  = window.innerWidth;
@@ -653,7 +678,7 @@ const marqueeItems = [
       }
       draw();
 
-      // SCROLL REVEAL
+      // ── SCROLL REVEAL ─────────────────────────────────────────────────────
       const obs = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
           if(e.isIntersecting){
