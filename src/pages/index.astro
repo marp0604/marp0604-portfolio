@@ -1,8 +1,9 @@
 ---
 const nombre = "Miguel Ángel";
-const rol = "Desarrollador Web";
-const descripcion = "Construyo experiencias web modernas, limpias y funcionales. Apasionado por el código limpio y el buen diseño.";
+const rol = "Desarrollador Frontend";
+const descripcion = "Desarrollador Frontend especializado en Astro, React y TypeScript. Construyo interfaces modernas, rápidas y accesibles. Disponible para proyectos freelance desde España.";
 const canonicalURL = "https://marp0604.com/";
+const ogImage = "https://marp0604.com/og-image.png";
 
 const proyectos = [
   {
@@ -29,21 +30,63 @@ const marqueeItems = [
   "Diseño Web", "Frontend", "Astro", "React", "TypeScript",
   "Node.js", "CSS", "UI/UX",
 ];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Miguel Ángel Ramírez",
+  "url": canonicalURL,
+  "jobTitle": "Desarrollador Frontend",
+  "description": descripcion,
+  "knowsAbout": ["HTML", "CSS", "JavaScript", "TypeScript", "Astro", "React", "Node.js", "Git"],
+  "nationality": "ES",
+  "sameAs": [
+    "https://github.com/marp0604"
+  ]
+};
 ---
 
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primarias -->
+    <title>{nombre} — {rol} · España</title>
     <meta name="description" content={descripcion} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
-    <title>{nombre} · {rol}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${nombre} — ${rol}`} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="marp0604.com" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={`${nombre} — ${rol}`} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -82,6 +125,17 @@ const marqueeItems = [
         line-height: 1.7;
         overflow-x: hidden;
       }
+
+      /* Skip link */
+      .skip-link {
+        position: absolute; top: -100%; left: var(--space-4, 1rem);
+        background: var(--accent); color: #060606;
+        padding: 0.5rem 1rem; border-radius: 0 0 4px 4px;
+        font-weight: 700; font-size: var(--text-sm);
+        text-decoration: none; z-index: 10000;
+        transition: top 200ms;
+      }
+      .skip-link:focus { top: 0; }
 
       /* CURSOR */
       #cursor {
@@ -434,13 +488,15 @@ const marqueeItems = [
   </head>
   <body>
 
-    <div id="cursor"></div>
-    <div id="cursor-ring"></div>
-    <canvas id="hero-canvas"></canvas>
+    <a href="#main-content" class="skip-link">Saltar al contenido</a>
 
-    <nav>
-      <a href="/" class="nav-logo">MA</a>
-      <ul class="nav-links">
+    <div id="cursor" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+    <nav aria-label="Navegación principal">
+      <a href="/" class="nav-logo" aria-label="Inicio — Miguel Ángel">MA</a>
+      <ul class="nav-links" role="list">
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#stack">Stack</a></li>
@@ -448,118 +504,139 @@ const marqueeItems = [
       </ul>
     </nav>
 
-    <section class="hero">
-      <p class="hero-eyebrow" id="he">✦ Disponible para proyectos</p>
-      <h1 class="hero-title" id="ht">
-        Construyo
-        <span class="line2">el futuro<span class="accent">.</span></span>
-      </h1>
-      <div class="hero-bottom" id="hb">
-        <p class="hero-desc">{descripcion}</p>
-        <div class="hero-scroll">
-          <div class="scroll-line"></div>
-          <span>Scroll</span>
-        </div>
-      </div>
-    </section>
+    <main id="main-content">
 
-    <div class="marquee-wrap">
-      <div class="marquee-track" id="marquee-track">
-        {[...marqueeItems, ...marqueeItems].map((item) => (
-          <span class="marquee-item">{item}</span>
-        ))}
-      </div>
-    </div>
-
-    <div class="content">
-
-      <section class="section" id="sobre-mi">
-        <div class="section-header reveal">
-          <span class="section-num">01 / Sobre mí</span>
-          <h2 class="section-title">Quién soy</h2>
-        </div>
-        <div class="about-grid">
-          <p class="about-text-large reveal">
-            Soy <em>Miguel Ángel</em>, desarrollador web
-            con pasión por crear productos digitales
-            que funcionen bien <em>y se vean mejor</em>.
-          </p>
-          <div class="about-details reveal">
-            <div class="about-detail-item">
-              <p class="about-detail-label">Especialidad</p>
-              <p class="about-detail-value">Frontend &amp; Fullstack</p>
-            </div>
-            <div class="about-detail-item">
-              <p class="about-detail-label">Disponibilidad</p>
-              <p class="about-detail-value">Freelance &amp; Proyectos</p>
-            </div>
-            <div class="about-detail-item">
-              <p class="about-detail-label">Ubicación</p>
-              <p class="about-detail-value">España</p>
-            </div>
-            <div class="about-detail-item">
-              <p class="about-detail-label">Email</p>
-              <p class="about-detail-value">contacto@marp0604.com</p>
-            </div>
+      <section class="hero" aria-label="Presentación">
+        <p class="hero-eyebrow" id="he">✦ Disponible para proyectos</p>
+        <h1 class="hero-title" id="ht">
+          Construyo
+          <span class="line2">el futuro<span class="accent" aria-hidden="true">.</span></span>
+        </h1>
+        <div class="hero-bottom" id="hb">
+          <p class="hero-desc">{descripcion}</p>
+          <div class="hero-scroll" aria-hidden="true">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
           </div>
         </div>
       </section>
 
-      <section class="section" id="proyectos">
-        <div class="section-header reveal">
-          <span class="section-num">02 / Trabajo</span>
-          <h2 class="section-title">Proyectos</h2>
-        </div>
-        <div>
-          {proyectos.map((p) => (
-            <a href={p.url} target="_blank" rel="noopener noreferrer" class="proyecto-item reveal">
-              <span class="proyecto-num">{p.num}</span>
-              <div class="proyecto-info">
-                <div class="proyecto-title-row">
-                  <span class="proyecto-name">{p.titulo}</span>
-                  <div class="proyecto-tags2">
-                    {p.tecnologias.map((t) => <span class="tag2">{t}</span>)}
-                  </div>
-                </div>
-                <p class="proyecto-desc2">{p.descripcion}</p>
-              </div>
-              <span class="proyecto-arrow">↗</span>
-            </a>
+      <div class="marquee-wrap" aria-hidden="true">
+        <div class="marquee-track" id="marquee-track">
+          {[...marqueeItems, ...marqueeItems].map((item) => (
+            <span class="marquee-item">{item}</span>
           ))}
         </div>
-      </section>
-
-      <section class="section" id="stack">
-        <div class="section-header reveal">
-          <span class="section-num">03 / Tecnologías</span>
-          <h2 class="section-title">Stack</h2>
-        </div>
-        <div class="stack-list">
-          {stack.map((s) => (
-            <div class="stack-row reveal">
-              <span class="stack-name">{s.nombre}</span>
-              <div class="stack-bar-bg">
-                <div class="stack-bar-fill" style={`width: ${s.nivel}%`}></div>
-              </div>
-              <span class="stack-pct">{s.nivel}%</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div class="contact-big" id="contacto">
-        <p class="contact-overline reveal">✦ Hablemos</p>
-        <h2 class="contact-title reveal">
-          ¿Tienes un proyecto
-          <span>en mente?</span>
-        </h2>
-        <a href="mailto:contacto@marp0604.com" class="contact-email reveal">
-          contacto@marp0604.com
-          <span class="arrow">↗</span>
-        </a>
       </div>
 
-    </div>
+      <div class="content">
+
+        <section class="section" id="sobre-mi" aria-labelledby="title-sobre-mi">
+          <div class="section-header reveal">
+            <span class="section-num" aria-hidden="true">01 / Sobre mí</span>
+            <h2 class="section-title" id="title-sobre-mi">Quién soy</h2>
+          </div>
+          <div class="about-grid">
+            <p class="about-text-large reveal">
+              Soy <em>Miguel Ángel</em>, desarrollador web
+              con pasión por crear productos digitales
+              que funcionen bien <em>y se vean mejor</em>.
+            </p>
+            <div class="about-details reveal">
+              <div class="about-detail-item">
+                <p class="about-detail-label">Especialidad</p>
+                <p class="about-detail-value">Frontend &amp; Fullstack</p>
+              </div>
+              <div class="about-detail-item">
+                <p class="about-detail-label">Disponibilidad</p>
+                <p class="about-detail-value">Freelance &amp; Proyectos</p>
+              </div>
+              <div class="about-detail-item">
+                <p class="about-detail-label">Ubicación</p>
+                <p class="about-detail-value">España</p>
+              </div>
+              <div class="about-detail-item">
+                <p class="about-detail-label">Email</p>
+                <p class="about-detail-value">contacto@marp0604.com</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="proyectos" aria-labelledby="title-proyectos">
+          <div class="section-header reveal">
+            <span class="section-num" aria-hidden="true">02 / Trabajo</span>
+            <h2 class="section-title" id="title-proyectos">Proyectos</h2>
+          </div>
+          <div>
+            {proyectos.map((p) => (
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="proyecto-item reveal"
+                aria-label={`Ver proyecto ${p.titulo} en GitHub (abre en nueva pestaña)`}
+              >
+                <span class="proyecto-num" aria-hidden="true">{p.num}</span>
+                <div class="proyecto-info">
+                  <div class="proyecto-title-row">
+                    <span class="proyecto-name">{p.titulo}</span>
+                    <div class="proyecto-tags2" aria-label="Tecnologías">
+                      {p.tecnologias.map((t) => <span class="tag2">{t}</span>)}
+                    </div>
+                  </div>
+                  <p class="proyecto-desc2">{p.descripcion}</p>
+                </div>
+                <span class="proyecto-arrow" aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section class="section" id="stack" aria-labelledby="title-stack">
+          <div class="section-header reveal">
+            <span class="section-num" aria-hidden="true">03 / Tecnologías</span>
+            <h2 class="section-title" id="title-stack">Stack</h2>
+          </div>
+          <div class="stack-list" role="list">
+            {stack.map((s) => (
+              <div class="stack-row reveal" role="listitem">
+                <span class="stack-name">{s.nombre}</span>
+                <div
+                  class="stack-bar-bg"
+                  role="progressbar"
+                  aria-valuenow={s.nivel}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`${s.nombre}: ${s.nivel}%`}
+                >
+                  <div class="stack-bar-fill" style={`width: ${s.nivel}%`}></div>
+                </div>
+                <span class="stack-pct" aria-hidden="true">{s.nivel}%</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="contact-big" id="contacto" aria-labelledby="title-contacto">
+          <p class="contact-overline reveal">✦ Hablemos</p>
+          <h2 class="contact-title reveal" id="title-contacto">
+            ¿Tienes un proyecto
+            <span>en mente?</span>
+          </h2>
+          <a
+            href="mailto:contacto@marp0604.com"
+            class="contact-email reveal"
+            aria-label="Enviar email a contacto@marp0604.com"
+          >
+            contacto@marp0604.com
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </section>
+
+      </div>
+
+    </main>
 
     <footer>
       <span>© {new Date().getFullYear()} Miguel Ángel</span>
