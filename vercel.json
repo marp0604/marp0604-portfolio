@@ -2,7 +2,6 @@
   "framework": "astro",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "nodeVersion": "22.x",
   "headers": [
     {
       "source": "/assets/(.*)",
