@@ -1,67 +1,136 @@
 ---
 const nombre = "Miguel Ángel";
-const rol = "Desarrollador Web";
-const descripcion = "Construyo experiencias web modernas, limpias y funcionales. Apasionado por el código limpio y el buen diseño.";
+const rol = "Desarrollador Frontend";
+const descripcion = "Desarrollador Frontend con base sólida en programación. Especializado en Astro, React y TypeScript. Construyo interfaces rápidas, accesibles y con criterio de diseño.";
+const canonicalURL = "https://marp0604.com/";
+const ogImage = "https://marp0604.com/og-image.png";
 
-const proyectos = [
+const experiencia = [
   {
-    titulo: "marp0604-portfolio",
-    descripcion: "Portfolio personal construido con Astro. Diseño de alto impacto visual con animaciones CSS y canvas.",
-    tecnologias: ["Astro", "CSS", "TypeScript"],
-    url: "https://github.com/marp0604/marp0604-portfolio",
-    num: "01",
+    empresa: "Farmacias.com",
+    rol: "Desarrollador Frontend",
+    periodo: "2026 — Presente",
+    ubicacion: "Almería, España",
+    descripcion: "Desarrollo de interfaces web en un entorno de producto real. Trabajo con tecnologías modernas del ecosistema frontend con foco en rendimiento, accesibilidad y mantenibilidad del código.",
+  },
+  {
+    empresa: "IES Celia Viñas",
+    rol: "DAM — Desarrollo de Aplicaciones Multiplataforma",
+    periodo: "2023 — 2025",
+    ubicacion: "Almería, España",
+    descripcion: "Formación técnica en programación orientada a objetos, estructuras de datos, bases de datos y desarrollo multiplataforma. Base que aplico directamente en el trabajo diario como frontend.",
   },
 ];
 
-const stack = [
-  { nombre: "HTML",       nivel: 95 },
-  { nombre: "CSS",        nivel: 92 },
-  { nombre: "JavaScript", nivel: 88 },
-  { nombre: "TypeScript", nivel: 80 },
-  { nombre: "Astro",      nivel: 85 },
-  { nombre: "React",      nivel: 78 },
-  { nombre: "Node.js",    nivel: 72 },
-  { nombre: "Git",        nivel: 90 },
+const proyectos = [
+  {
+    titulo: "Vexelplaypro",
+    descripcion: "Plataforma web personal en desarrollo. Proyecto propio que nació en web y evolucionará hacia multiplataforma con Kotlin Multiplatform.",
+    tecnologias: ["React", "TypeScript", "KMP"],
+    url: "https://github.com/marp0604",
+    num: "01",
+    wip: true,
+  },
+  {
+    titulo: "marp0604-portfolio",
+    descripcion: "Portfolio personal construido con Astro. Diseño de alto impacto visual con animaciones CSS y canvas. Código abierto.",
+    tecnologias: ["Astro", "CSS", "TypeScript"],
+    url: "https://github.com/marp0604/marp0604-portfolio",
+    num: "02",
+    wip: false,
+  },
+];
+
+const stackGrupos = [
+  {
+    categoria: "Frontend",
+    skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Astro"],
+  },
+  {
+    categoria: "Herramientas",
+    skills: ["Git", "GitHub", "Vite", "Node.js", "npm"],
+  },
+  {
+    categoria: "Explorando",
+    skills: ["Kotlin Multiplatform", "Tailwind CSS", "Figma"],
+  },
 ];
 
 const marqueeItems = [
-  "Diseño Web", "Frontend", "Astro", "React", "TypeScript",
-  "Node.js", "CSS", "UI/UX",
+  "Frontend", "Astro", "React", "TypeScript",
+  "Node.js", "CSS", "UI/UX", "Accesibilidad",
 ];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Miguel Ángel Ramírez Pérez",
+  "url": canonicalURL,
+  "jobTitle": "Desarrollador Frontend",
+  "description": descripcion,
+  "knowsAbout": ["HTML", "CSS", "JavaScript", "TypeScript", "Astro", "React", "Node.js", "Git", "Kotlin Multiplatform"],
+  "nationality": "ES",
+  "sameAs": ["https://github.com/marp0604", "https://linkedin.com/in/marp0604"],
+};
 ---
 
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
+
+    <title>{nombre} — {rol} · España</title>
     <meta name="description" content={descripcion} />
-    <title>{nombre} · {rol}</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${nombre} — ${rol}`} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="marp0604.com" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={`${nombre} — ${rol}`} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
-        --bg:       #080808;
-        --surface:  #111111;
+        --bg:           #080808;
+        --surface:      #111111;
+        --surface-2:    #161616;
         --border:       rgba(255,255,255,0.07);
         --border-hover: rgba(255,255,255,0.18);
-        --text:   #f2f0ec;
-        --muted:  #a0a09a;
-        --accent:  #c8f060;
-        --accent2: #60d0f0;
+        --text:         #f2f0ec;
+        --muted:        #a0a09a;
+        --faint:        #555552;
+        --accent:       #c8f060;
+        --accent2:      #60d0f0;
         --font-body:    'Inter', system-ui, sans-serif;
         --font-display: 'Syne', sans-serif;
-        --ease: cubic-bezier(0.16, 1, 0.3, 1);
-        --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.8125rem);
-        --text-sm:   clamp(0.875rem, 0.85rem + 0.25vw, 0.9375rem);
-        --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.0625rem);
-        --text-lg:   clamp(1.125rem, 1rem    + 0.5vw,  1.375rem);
-        --text-hero: clamp(3.5rem,   0.5rem  + 8vw,    9rem);
+        --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+        --text-xs:      clamp(0.75rem,  0.7rem  + 0.25vw, 0.8125rem);
+        --text-sm:      clamp(0.875rem, 0.85rem + 0.25vw, 0.9375rem);
+        --text-base:    clamp(1rem,     0.95rem + 0.25vw, 1.0625rem);
+        --text-lg:      clamp(1.125rem, 1rem    + 0.5vw,  1.375rem);
+        --text-hero:    clamp(3.5rem,   0.5rem  + 8vw,    9rem);
       }
 
       html {
@@ -69,6 +138,7 @@ const marqueeItems = [
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
+        scroll-padding-top: 5rem;
         cursor: none;
       }
 
@@ -81,7 +151,16 @@ const marqueeItems = [
         overflow-x: hidden;
       }
 
-      /* CURSOR */
+      .skip-link {
+        position: absolute; top: -100%; left: 1rem;
+        background: var(--accent); color: #060606;
+        padding: 0.5rem 1rem; border-radius: 0 0 4px 4px;
+        font-weight: 700; font-size: var(--text-sm);
+        text-decoration: none; z-index: 10000;
+        transition: top 200ms;
+      }
+      .skip-link:focus { top: 0; }
+
       #cursor {
         position: fixed; width: 10px; height: 10px;
         background: var(--accent); border-radius: 50%;
@@ -102,20 +181,17 @@ const marqueeItems = [
       body:has(a:hover) #cursor-ring,
       body:has(button:hover) #cursor-ring { width: 56px; height: 56px; }
 
-      /* CANVAS */
       #hero-canvas {
         position: fixed; top: 0; left: 0;
         width: 100%; height: 100%;
-        pointer-events: none; z-index: 0;
-        opacity: 0.22;
+        pointer-events: none; z-index: 0; opacity: 0.22;
       }
 
-      /* NAV */
       nav {
         position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         display: flex; justify-content: space-between; align-items: center;
         padding: 1.5rem 3rem;
-        background: rgba(8,8,8,0.80);
+        background: rgba(8,8,8,0.85);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--border);
@@ -125,7 +201,7 @@ const marqueeItems = [
         font-weight: 800; color: var(--text);
         text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
       }
-      .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+      .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
       .nav-links a {
         color: var(--muted); text-decoration: none;
         font-size: var(--text-sm); letter-spacing: 0.08em;
@@ -133,8 +209,15 @@ const marqueeItems = [
         transition: color 200ms;
       }
       .nav-links a:hover { color: var(--text); }
+      .nav-github {
+        display: flex; align-items: center; gap: 0.4rem;
+        border: 1px solid var(--border);
+        padding: 0.35rem 0.9rem; border-radius: 999px;
+        text-transform: none !important; letter-spacing: 0 !important;
+        transition: border-color 200ms, color 200ms !important;
+      }
+      .nav-github:hover { border-color: var(--border-hover) !important; color: var(--text) !important; }
 
-      /* HERO */
       .hero {
         position: relative; z-index: 1;
         min-height: 100vh;
@@ -177,7 +260,7 @@ const marqueeItems = [
       .hero-title .accent { color: var(--accent); }
       .hero-desc {
         font-size: var(--text-base); color: var(--text);
-        max-width: 380px; line-height: 1.75; opacity: 0.82;
+        max-width: 400px; line-height: 1.8; opacity: 0.82;
       }
       .hero-scroll {
         display: flex; flex-direction: column;
@@ -191,11 +274,6 @@ const marqueeItems = [
         animation: scrollPulse 2.5s ease-in-out infinite;
       }
 
-      /* MARQUEE
-         La duración base (100s) es solo un fallback.
-         JS la sobreescribe calculando: duración = (anchoMitad / 80) segundos
-         para mantener siempre ~80px/s independientemente del tamaño de pantalla.
-      */
       .marquee-wrap {
         position: relative; z-index: 1;
         border-top: 1px solid var(--border);
@@ -211,8 +289,7 @@ const marqueeItems = [
       .marquee-item {
         font-family: var(--font-display);
         font-size: var(--text-sm); font-weight: 700;
-        letter-spacing: 0.12em; text-transform: uppercase;
-        color: var(--muted);
+        letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
         display: flex; align-items: center; gap: 4rem;
       }
       .marquee-item::after {
@@ -220,7 +297,6 @@ const marqueeItems = [
         background: var(--accent); flex-shrink: 0; display: inline-block;
       }
 
-      /* CONTENT */
       .content {
         position: relative; z-index: 1;
         max-width: 1400px; margin: 0 auto; padding: 0 3rem;
@@ -242,37 +318,88 @@ const marqueeItems = [
         color: var(--text); line-height: 1;
       }
 
-      /* SOBRE MI */
       .about-grid {
-        display: grid; grid-template-columns: 1fr 1fr;
+        display: grid; grid-template-columns: 1.1fr 0.9fr;
         gap: 6rem; align-items: start;
       }
-      .about-text-large {
+      .about-statement {
         font-family: var(--font-display);
         font-size: clamp(1.5rem, 2.5vw, 2.125rem);
         font-weight: 700; line-height: 1.35;
         color: var(--text); letter-spacing: -0.02em;
+        margin-bottom: 2rem;
       }
-      .about-text-large em { color: var(--accent); font-style: normal; }
-      .about-details { display: flex; flex-direction: column; gap: 1.75rem; }
-      .about-detail-item { border-top: 1px solid var(--border); padding-top: 1.25rem; }
+      .about-statement em { color: var(--accent); font-style: normal; }
+      .about-bio {
+        font-size: var(--text-base); color: var(--muted);
+        line-height: 1.85; max-width: 54ch;
+        margin-bottom: 2.5rem;
+      }
+      .about-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+      .about-link {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        font-size: var(--text-sm); font-weight: 600;
+        color: var(--muted); text-decoration: none;
+        border: 1px solid var(--border);
+        padding: 0.5rem 1.1rem; border-radius: 999px;
+        transition: color 200ms, border-color 200ms;
+      }
+      .about-link:hover { color: var(--text); border-color: var(--border-hover); }
+      .about-details { display: flex; flex-direction: column; }
+      .about-detail-item {
+        display: grid; grid-template-columns: 120px 1fr;
+        gap: 1.5rem; align-items: baseline;
+        padding: 1.1rem 0; border-top: 1px solid var(--border);
+      }
+      .about-detail-item:last-child { border-bottom: 1px solid var(--border); }
       .about-detail-label {
-        font-size: var(--text-xs); letter-spacing: 0.14em;
-        text-transform: uppercase; color: var(--muted);
-        margin-bottom: 0.35rem; font-weight: 600;
+        font-size: var(--text-xs); letter-spacing: 0.12em;
+        text-transform: uppercase; color: var(--faint); font-weight: 600;
       }
       .about-detail-value {
-        font-size: var(--text-base); color: var(--text);
-        font-weight: 500; line-height: 1.5;
+        font-size: var(--text-sm); color: var(--text); font-weight: 500; line-height: 1.5;
       }
+      .about-detail-value a {
+        color: var(--accent); text-decoration: none; transition: opacity 200ms;
+      }
+      .about-detail-value a:hover { opacity: 0.75; }
 
-      /* PROYECTOS */
+      .exp-list { display: flex; flex-direction: column; }
+      .exp-item {
+        display: grid; grid-template-columns: 1fr 200px;
+        gap: 3rem; padding: 3rem 0;
+        border-top: 1px solid var(--border); align-items: start;
+      }
+      .exp-item:last-child { border-bottom: 1px solid var(--border); }
+      .exp-empresa {
+        font-family: var(--font-display);
+        font-size: clamp(1.25rem, 2vw, 1.625rem);
+        font-weight: 800; color: var(--text);
+        letter-spacing: -0.025em; margin-bottom: 0.3rem;
+      }
+      .exp-rol {
+        font-size: var(--text-sm); color: var(--accent);
+        font-weight: 600; margin-bottom: 1rem;
+      }
+      .exp-desc {
+        font-size: var(--text-base); color: var(--muted);
+        line-height: 1.8; max-width: 52ch;
+      }
+      .exp-meta { text-align: right; }
+      .exp-periodo {
+        font-size: var(--text-sm); color: var(--muted);
+        font-weight: 500; font-variant-numeric: tabular-nums;
+        margin-bottom: 0.35rem; display: block;
+      }
+      .exp-ubicacion { font-size: var(--text-xs); color: var(--faint); letter-spacing: 0.06em; }
+
       .proyecto-item {
         display: grid; grid-template-columns: 64px 1fr 2rem;
         gap: 3rem; align-items: center;
         padding: 2.5rem 0; border-top: 1px solid var(--border);
         text-decoration: none; position: relative; overflow: hidden;
       }
+      .proyecto-item:last-child { border-bottom: 1px solid var(--border); }
       .proyecto-item::after {
         content: ''; position: absolute;
         bottom: 0; left: 0; right: 0; height: 1px;
@@ -285,30 +412,34 @@ const marqueeItems = [
       .proyecto-item:hover .proyecto-arrow { transform: translate(3px,-3px); color: var(--accent); }
       .proyecto-num {
         font-family: var(--font-display); font-size: var(--text-sm);
-        color: var(--muted); font-weight: 700;
-        letter-spacing: 0.06em; transition: color 280ms;
-        font-variant-numeric: tabular-nums;
+        color: var(--muted); font-weight: 700; letter-spacing: 0.06em;
+        transition: color 280ms; font-variant-numeric: tabular-nums;
       }
-      .proyecto-info { min-width: 0; }
       .proyecto-title-row {
         display: flex; align-items: center;
-        gap: 1.25rem; margin-bottom: 0.5rem; flex-wrap: wrap;
+        gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;
       }
       .proyecto-name {
         font-family: var(--font-display);
         font-size: clamp(1.25rem, 2.5vw, 1.875rem);
         font-weight: 800; color: var(--text); letter-spacing: -0.025em;
       }
-      .proyecto-tags2 { display: flex; gap: 0.375rem; flex-wrap: wrap; }
-      .tag2 {
+      .proyecto-badge {
+        font-size: var(--text-xs); padding: 0.15rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(200,240,96,0.1);
+        border: 1px solid rgba(200,240,96,0.25);
+        color: var(--accent); font-weight: 600; letter-spacing: 0.06em;
+      }
+      .proyecto-tags { display: flex; gap: 0.375rem; flex-wrap: wrap; margin-top: 0.25rem; }
+      .tag {
         font-size: var(--text-xs); padding: 0.2rem 0.65rem;
         border-radius: 999px; border: 1px solid var(--border-hover);
-        color: var(--muted); font-weight: 600;
-        letter-spacing: 0.04em; font-family: var(--font-body);
+        color: var(--muted); font-weight: 600; letter-spacing: 0.04em;
       }
-      .proyecto-desc2 {
+      .proyecto-desc {
         font-size: var(--text-base); color: var(--muted);
-        line-height: 1.7; max-width: 520px;
+        line-height: 1.7; max-width: 520px; margin-top: 0.6rem;
       }
       .proyecto-arrow {
         font-size: 1.25rem; color: var(--muted);
@@ -316,38 +447,38 @@ const marqueeItems = [
         flex-shrink: 0; line-height: 1;
       }
 
-      /* STACK */
-      .stack-list { display: flex; flex-direction: column; }
-      .stack-row {
-        display: grid; grid-template-columns: 160px 1fr 52px;
-        align-items: center; gap: 2rem;
-        padding: 1.5rem 0; border-top: 1px solid var(--border);
+      .stack-grupos {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
       }
-      .stack-name {
-        font-family: var(--font-display); font-size: var(--text-base);
-        font-weight: 700; color: var(--text); letter-spacing: -0.01em;
+      .stack-grupo {
+        padding: 2.5rem 2.5rem 2.5rem 0;
+        border-top: 1px solid var(--border);
       }
-      .stack-bar-bg {
-        height: 3px; background: rgba(255,255,255,0.08);
-        border-radius: 999px; overflow: hidden;
+      .stack-grupo:not(:first-child) {
+        padding-left: 2.5rem;
+        border-left: 1px solid var(--border);
       }
-      .stack-bar-fill {
-        height: 100%;
-        background: linear-gradient(to right, var(--accent), var(--accent2));
-        border-radius: 999px;
-        transform: scaleX(0); transform-origin: left;
-        transition: transform 1.1s var(--ease);
+      .stack-grupo-label {
+        font-size: var(--text-xs); letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--faint);
+        font-weight: 700; margin-bottom: 1.25rem;
       }
-      .stack-bar-fill.visible { transform: scaleX(1); }
-      .stack-pct {
-        font-size: var(--text-sm); color: var(--muted);
-        font-weight: 600; text-align: right;
-        font-variant-numeric: tabular-nums;
-        font-feature-settings: "tnum";
-        letter-spacing: 0;
+      .stack-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .chip {
+        font-size: var(--text-sm); font-weight: 500;
+        padding: 0.45rem 1rem; border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--text); background: var(--surface-2);
+        transition: border-color 200ms;
       }
+      .chip:hover { border-color: var(--border-hover); }
+      .chip-accent {
+        border-color: rgba(200,240,96,0.2);
+        background: rgba(200,240,96,0.05);
+        color: var(--accent);
+      }
+      .chip-accent:hover { border-color: rgba(200,240,96,0.5); }
 
-      /* CONTACTO */
       .contact-big {
         padding: 8rem 0 10rem; border-top: 1px solid var(--border);
         text-align: center;
@@ -368,6 +499,10 @@ const marqueeItems = [
         -webkit-text-stroke: 1.5px rgba(255,255,255,0.35);
         color: transparent;
       }
+      .contact-actions {
+        display: flex; justify-content: center;
+        align-items: center; gap: 1rem; flex-wrap: wrap;
+      }
       .contact-email {
         display: inline-flex; align-items: center; gap: 0.875rem;
         font-family: var(--font-display); font-size: var(--text-lg);
@@ -382,8 +517,16 @@ const marqueeItems = [
       }
       .contact-email .arrow { transition: transform 280ms var(--ease); }
       .contact-email:hover .arrow { transform: translate(3px,-3px); }
+      .contact-linkedin {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: var(--text-base); font-weight: 600;
+        color: var(--muted); text-decoration: none;
+        border: 1px solid var(--border);
+        padding: 1.125rem 2rem; border-radius: 999px;
+        transition: border-color 300ms, color 300ms;
+      }
+      .contact-linkedin:hover { color: var(--text); border-color: var(--border-hover); }
 
-      /* FOOTER */
       footer {
         position: relative; z-index: 1;
         border-top: 1px solid var(--border);
@@ -391,8 +534,12 @@ const marqueeItems = [
         display: flex; justify-content: space-between; align-items: center;
         font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.04em;
       }
+      .footer-github {
+        display: flex; align-items: center; gap: 0.5rem;
+        color: var(--muted); text-decoration: none; transition: color 200ms;
+      }
+      .footer-github:hover { color: var(--text); }
 
-      /* REVEAL */
       .reveal {
         opacity: 0; transform: translateY(28px);
         transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
@@ -405,7 +552,7 @@ const marqueeItems = [
       }
       @keyframes scrollPulse {
         0%, 100% { opacity: 0.3; }
-        50%       { opacity: 1;   }
+        50%       { opacity: 1; }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -415,161 +562,253 @@ const marqueeItems = [
         }
       }
 
+      @media (max-width: 900px) {
+        .stack-grupos { grid-template-columns: 1fr 1fr; }
+        .stack-grupo:nth-child(3) { border-left: none; padding-left: 0; }
+      }
+
       @media (max-width: 768px) {
         nav { padding: 1.125rem 1.5rem; }
         .nav-links { display: none; }
         .hero { padding: 0 1.5rem 4rem; }
         .content { padding: 0 1.5rem; }
         .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+        .exp-meta { text-align: left; }
         .proyecto-item { grid-template-columns: 52px 1fr; gap: 1.5rem; }
         .proyecto-arrow { display: none; }
-        .stack-row { grid-template-columns: 130px 1fr 44px; gap: 1.25rem; }
+        .stack-grupos { grid-template-columns: 1fr; }
+        .stack-grupo { padding: 2rem 0; border-left: none !important; }
         .contact-big { padding: 5rem 0 6rem; }
         footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
       }
+
       @media (max-width: 480px) {
         html { cursor: auto; }
         #cursor, #cursor-ring { display: none; }
-        .stack-row { grid-template-columns: 110px 1fr 40px; gap: 1rem; }
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 3px;
       }
     </style>
   </head>
   <body>
 
-    <div id="cursor"></div>
-    <div id="cursor-ring"></div>
-    <canvas id="hero-canvas"></canvas>
+    <a href="#main-content" class="skip-link">Saltar al contenido</a>
 
-    <nav>
-      <a href="/" class="nav-logo">MA</a>
-      <ul class="nav-links">
+    <div id="cursor" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+    <nav aria-label="Navegación principal">
+      <a href="/" class="nav-logo" aria-label="Inicio — Miguel Ángel">MA</a>
+      <ul class="nav-links" role="list">
         <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#stack">Stack</a></li>
         <li><a href="#contacto">Contacto</a></li>
+        <li>
+          <a
+            href="https://github.com/marp0604"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-github"
+            aria-label="Perfil de GitHub (abre en nueva pestaña)"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+            GitHub
+          </a>
+        </li>
       </ul>
     </nav>
 
-    <section class="hero">
-      <p class="hero-eyebrow" id="he">✦ Disponible para proyectos</p>
-      <h1 class="hero-title" id="ht">
-        Construyo
-        <span class="line2">el futuro<span class="accent">.</span></span>
-      </h1>
-      <div class="hero-bottom" id="hb">
-        <p class="hero-desc">{descripcion}</p>
-        <div class="hero-scroll">
-          <div class="scroll-line"></div>
-          <span>Scroll</span>
-        </div>
-      </div>
-    </section>
+    <main id="main-content">
 
-    <div class="marquee-wrap">
-      <div class="marquee-track" id="marquee-track">
-        {[...marqueeItems, ...marqueeItems].map((item) => (
-          <span class="marquee-item">{item}</span>
-        ))}
-      </div>
-    </div>
-
-    <div class="content">
-
-      <section class="section" id="sobre-mi">
-        <div class="section-header reveal">
-          <span class="section-num">01 / Sobre mí</span>
-          <h2 class="section-title">Quién soy</h2>
-        </div>
-        <div class="about-grid">
-          <p class="about-text-large reveal">
-            Soy <em>Miguel Ángel</em>, desarrollador web
-            con pasión por crear productos digitales
-            que funcionen bien <em>y se vean mejor</em>.
-          </p>
-          <div class="about-details reveal">
-            <div class="about-detail-item">
-              <p class="about-detail-label">Especialidad</p>
-              <p class="about-detail-value">Frontend &amp; Fullstack</p>
-            </div>
-            <div class="about-detail-item">
-              <p class="about-detail-label">Disponibilidad</p>
-              <p class="about-detail-value">Freelance &amp; Proyectos</p>
-            </div>
-            <div class="about-detail-item">
-              <p class="about-detail-label">Ubicación</p>
-              <p class="about-detail-value">España</p>
-            </div>
-            <div class="about-detail-item">
-              <p class="about-detail-label">Email</p>
-              <p class="about-detail-value">contacto@marp0604.com</p>
-            </div>
+      <section class="hero" aria-label="Presentación">
+        <p class="hero-eyebrow" id="he">✦ Desarrollador Frontend · Almería, España</p>
+        <h1 class="hero-title" id="ht">
+          Construyo
+          <span class="line2">el futuro<span class="accent" aria-hidden="true">.</span></span>
+        </h1>
+        <div class="hero-bottom" id="hb">
+          <p class="hero-desc">{descripcion}</p>
+          <div class="hero-scroll" aria-hidden="true">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
           </div>
         </div>
       </section>
 
-      <section class="section" id="proyectos">
-        <div class="section-header reveal">
-          <span class="section-num">02 / Trabajo</span>
-          <h2 class="section-title">Proyectos</h2>
-        </div>
-        <div>
-          {proyectos.map((p) => (
-            <a href={p.url} target="_blank" rel="noopener noreferrer" class="proyecto-item reveal">
-              <span class="proyecto-num">{p.num}</span>
-              <div class="proyecto-info">
-                <div class="proyecto-title-row">
-                  <span class="proyecto-name">{p.titulo}</span>
-                  <div class="proyecto-tags2">
-                    {p.tecnologias.map((t) => <span class="tag2">{t}</span>)}
-                  </div>
-                </div>
-                <p class="proyecto-desc2">{p.descripcion}</p>
-              </div>
-              <span class="proyecto-arrow">↗</span>
-            </a>
+      <div class="marquee-wrap" aria-hidden="true">
+        <div class="marquee-track" id="marquee-track">
+          {[...marqueeItems, ...marqueeItems].map((item) => (
+            <span class="marquee-item">{item}</span>
           ))}
         </div>
-      </section>
-
-      <section class="section" id="stack">
-        <div class="section-header reveal">
-          <span class="section-num">03 / Tecnologías</span>
-          <h2 class="section-title">Stack</h2>
-        </div>
-        <div class="stack-list">
-          {stack.map((s) => (
-            <div class="stack-row reveal">
-              <span class="stack-name">{s.nombre}</span>
-              <div class="stack-bar-bg">
-                <div class="stack-bar-fill" style={`width: ${s.nivel}%`}></div>
-              </div>
-              <span class="stack-pct">{s.nivel}%</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div class="contact-big" id="contacto">
-        <p class="contact-overline reveal">✦ Hablemos</p>
-        <h2 class="contact-title reveal">
-          ¿Tienes un proyecto
-          <span>en mente?</span>
-        </h2>
-        <a href="mailto:contacto@marp0604.com" class="contact-email reveal">
-          contacto@marp0604.com
-          <span class="arrow">↗</span>
-        </a>
       </div>
 
-    </div>
+      <div class="content">
+
+        <section class="section" id="sobre-mi" aria-labelledby="title-sobre-mi">
+          <div class="section-header reveal">
+            <span class="section-num" aria-hidden="true">01 / Sobre mí</span>
+            <h2 class="section-title" id="title-sobre-mi">Quién soy</h2>
+          </div>
+          <div class="about-grid">
+            <div class="reveal">
+              <p class="about-statement">
+                Vengo de <em>programación</em>,
+                aterricé en la web
+                y no pienso <em>irme</em>.
+              </p>
+              <p class="about-bio">
+                Estudié Desarrollo de Aplicaciones Multiplataforma en el IES Celia Viñas de Almería. Allí aprendí a programar de verdad: algoritmos, estructuras de datos, orientación a objetos, lógica sin atajos. Después descubrí el frontend y encontré el lugar donde esa base importa más: interfaces que no solo se ven bien, sino que están bien construidas.
+              </p>
+              <div class="about-links">
+                <a href="https://github.com/marp0604" target="_blank" rel="noopener noreferrer" class="about-link" aria-label="Perfil de GitHub (abre en nueva pestaña)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+                  GitHub
+                </a>
+                <a href="https://linkedin.com/in/marp0604" target="_blank" rel="noopener noreferrer" class="about-link" aria-label="Perfil de LinkedIn (abre en nueva pestaña)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+            <div class="about-details reveal">
+              <div class="about-detail-item">
+                <p class="about-detail-label">Rol</p>
+                <p class="about-detail-value">Desarrollador Frontend</p>
+              </div>
+              <div class="about-detail-item">
+                <p class="about-detail-label">Stack</p>
+                <p class="about-detail-value">Astro · React · TypeScript</p>
+              </div>
+              <div class="about-detail-item">
+                <p class="about-detail-label">Ubicación</p>
+                <p class="about-detail-value">Almería, España</p>
+              </div>
+              <div class="about-detail-item">
+                <p class="about-detail-label">Situación</p>
+                <p class="about-detail-value">Trabajando · Abierto a oportunidades</p>
+              </div>
+              <div class="about-detail-item">
+                <p class="about-detail-label">Email</p>
+                <p class="about-detail-value">
+                  <a href="mailto:contacto@marp0604.com">contacto@marp0604.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="experiencia" aria-labelledby="title-experiencia">
+          <div class="section-header reveal">
+            <span class="section-num" aria-hidden="true">02 / Trayectoria</span>
+            <h2 class="section-title" id="title-experiencia">Experiencia</h2>
+          </div>
+          <div class="exp-list">
+            {experiencia.map((e) => (
+              <div class="exp-item reveal">
+                <div>
+                  <p class="exp-empresa">{e.empresa}</p>
+                  <p class="exp-rol">{e.rol}</p>
+                  <p class="exp-desc">{e.descripcion}</p>
+                </div>
+                <div class="exp-meta">
+                  <span class="exp-periodo">{e.periodo}</span>
+                  <span class="exp-ubicacion">{e.ubicacion}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="section" id="proyectos" aria-labelledby="title-proyectos">
+          <div class="section-header reveal">
+            <span class="section-num" aria-hidden="true">03 / Trabajo</span>
+            <h2 class="section-title" id="title-proyectos">Proyectos</h2>
+          </div>
+          <div>
+            {proyectos.map((p) => (
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="proyecto-item reveal"
+                aria-label={`Ver proyecto ${p.titulo} en GitHub (abre en nueva pestaña)`}
+              >
+                <span class="proyecto-num" aria-hidden="true">{p.num}</span>
+                <div class="proyecto-info">
+                  <div class="proyecto-title-row">
+                    <span class="proyecto-name">{p.titulo}</span>
+                    {p.wip && <span class="proyecto-badge">En desarrollo</span>}
+                  </div>
+                  <div class="proyecto-tags" aria-label="Tecnologías">
+                    {p.tecnologias.map((t) => <span class="tag">{t}</span>)}
+                  </div>
+                  <p class="proyecto-desc">{p.descripcion}</p>
+                </div>
+                <span class="proyecto-arrow" aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section class="section" id="stack" aria-labelledby="title-stack">
+          <div class="section-header reveal">
+            <span class="section-num" aria-hidden="true">04 / Tecnologías</span>
+            <h2 class="section-title" id="title-stack">Stack</h2>
+          </div>
+          <div class="stack-grupos reveal">
+            {stackGrupos.map((g, gi) => (
+              <div class="stack-grupo">
+                <p class="stack-grupo-label">{g.categoria}</p>
+                <div class="stack-chips" role="list" aria-label={`Tecnologías de ${g.categoria}`}>
+                  {g.skills.map((s) => (
+                    <span class={`chip${gi === 0 ? ' chip-accent' : ''}`} role="listitem">{s}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="contact-big" id="contacto" aria-labelledby="title-contacto">
+          <p class="contact-overline reveal">✦ Hablemos</p>
+          <h2 class="contact-title reveal" id="title-contacto">
+            ¿Tienes un proyecto
+            <span>en mente?</span>
+          </h2>
+          <div class="contact-actions reveal">
+            <a href="mailto:contacto@marp0604.com" class="contact-email" aria-label="Enviar email a contacto@marp0604.com">
+              contacto@marp0604.com
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://linkedin.com/in/marp0604" target="_blank" rel="noopener noreferrer" class="contact-linkedin" aria-label="Perfil de LinkedIn (abre en nueva pestaña)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </main>
 
     <footer>
       <span>© {new Date().getFullYear()} Miguel Ángel</span>
+      <a href="https://github.com/marp0604" target="_blank" rel="noopener noreferrer" class="footer-github" aria-label="Perfil de GitHub (abre en nueva pestaña)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        marp0604
+      </a>
       <span>Hecho con Astro ✦</span>
     </footer>
 
     <script>
-      // CURSOR
       const cursor = document.getElementById('cursor');
       const ring   = document.getElementById('cursor-ring');
       let mx = 0, my = 0, rx = 0, ry = 0;
@@ -586,7 +825,6 @@ const marqueeItems = [
         requestAnimationFrame(animRing);
       })();
 
-      // HERO ANIMATIONS
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           document.getElementById('he').classList.add('show');
@@ -595,22 +833,15 @@ const marqueeItems = [
         });
       });
 
-      // MARQUEE: velocidad fija en px/s (independiente del ancho total del track)
-      // Velocidad objetivo: 80px/s -> si el track mide 2000px, duracion = 2000/80 = 25s
-      // Usamos scrollWidth/2 porque el track tiene los items duplicados (loop -50%)
       (function setMarqueeSpeed() {
-        const PX_PER_SEC = 80; // ajusta este valor para cambiar la velocidad
         const track = document.getElementById('marquee-track');
         if (!track) return;
-        // Esperamos a que el navegador haya calculado el ancho real
         requestAnimationFrame(() => {
           const halfWidth = track.scrollWidth / 2;
-          const duration  = halfWidth / PX_PER_SEC;
-          track.style.animationDuration = duration.toFixed(2) + 's';
+          track.style.animationDuration = (halfWidth / 80).toFixed(2) + 's';
         });
       })();
 
-      // CANVAS
       const canvas = document.getElementById('hero-canvas');
       const ctx    = canvas.getContext('2d');
       let W = canvas.width  = window.innerWidth;
@@ -653,17 +884,12 @@ const marqueeItems = [
       }
       draw();
 
-      // SCROLL REVEAL
       const obs = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
-          if(e.isIntersecting){
-            e.target.classList.add('visible');
-            const fill = e.target.querySelector('.stack-bar-fill');
-            if(fill) setTimeout(()=>fill.classList.add('visible'),80);
-          }
+          if(e.isIntersecting) e.target.classList.add('visible');
         });
-      },{ threshold: 0.12 });
-      document.querySelectorAll('.reveal').forEach((el)=>obs.observe(el));
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
     </script>
 
   </body>
