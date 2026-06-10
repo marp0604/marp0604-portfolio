@@ -445,7 +445,6 @@ const jsonLd = {
       }
       .about-link:hover { color: var(--text); border-color: var(--border-hover); }
 
-      /* Columna derecha: foto + detalles */
       .about-right { display: flex; flex-direction: column; gap: 0; }
 
       .about-photo-wrap {
@@ -730,7 +729,6 @@ const jsonLd = {
           gap: 3rem;
         }
         .about-right {
-          /* En móvil la foto va primero, luego detalles */
           order: -1;
         }
         .about-photo-wrap {
@@ -835,13 +833,13 @@ const jsonLd = {
     <main id="main-content">
 
       <section class="hero" aria-label="Presentación">
-        <p class="hero-eyebrow" id="he">✦ Desarrollador Multiplataforma · Almería, España</p>
+        <p class="hero-eyebrow" id="he">✦ Miguel Ángel Ramírez · Desarrollador Multiplataforma</p>
         <h1 class="hero-title" id="ht">
           Construyo
           <span class="line2">productos<span class="accent" aria-hidden="true">.</span></span>
         </h1>
         <div class="hero-bottom" id="hb">
-          <p class="hero-desc">Web rápida, apps nativas, código que aguanta. Sin librerías de componentes, sin atajos.</p>
+          <p class="hero-desc">Frontend sólido, arquitectura pensada. Del web al móvil con KMP.</p>
           <div class="hero-scroll" aria-hidden="true">
             <div class="scroll-line"></div>
             <span>Scroll</span>
@@ -980,10 +978,12 @@ const jsonLd = {
                 <div class="proyecto-info">
                   <div class="proyecto-title-row">
                     <span class="proyecto-name">{p.titulo}</span>
-                    {p.wip && <span class="proyecto-badge">En desarrollo</span>}
+                    {p.wip && <span class="proyecto-badge">En progreso</span>}
                   </div>
-                  <div class="proyecto-tags" aria-label="Tecnologías">
-                    {p.tecnologias.map((t) => <span class="tag">{t}</span>)}
+                  <div class="proyecto-tags">
+                    {p.tecnologias.map((t) => (
+                      <span class="tag">{t}</span>
+                    ))}
                   </div>
                   <p class="proyecto-desc">{p.descripcion}</p>
                 </div>
@@ -995,16 +995,16 @@ const jsonLd = {
 
         <section class="section" id="stack" aria-labelledby="title-stack">
           <div class="section-header reveal">
-            <span class="section-num" aria-hidden="true">04 / Tecnologías</span>
+            <span class="section-num" aria-hidden="true">04 / Herramientas</span>
             <h2 class="section-title" id="title-stack">Stack</h2>
           </div>
           <div class="stack-grupos reveal">
-            {stackGrupos.map((g, gi) => (
+            {stackGrupos.map((g) => (
               <div class="stack-grupo">
                 <p class="stack-grupo-label">{g.categoria}</p>
-                <div class="stack-chips" role="list" aria-label={`Tecnologías de ${g.categoria}`}>
+                <div class="stack-chips">
                   {g.skills.map((s) => (
-                    <span class={`chip${gi === 0 ? ' chip-accent' : ''}`} role="listitem">{s}</span>
+                    <span class={`chip${s === "Astro" || s === "React" || s === "TypeScript" ? " chip-accent" : ""}`}>{s}</span>
                   ))}
                 </div>
               </div>
@@ -1012,25 +1012,34 @@ const jsonLd = {
           </div>
         </section>
 
+      </div>
+
+      <div class="content">
         <section class="contact-big" id="contacto" aria-labelledby="title-contacto">
-          <p class="contact-overline reveal">✦ Hablemos</p>
+          <p class="contact-overline reveal">05 / Contacto</p>
           <h2 class="contact-title reveal" id="title-contacto">
-            ¿Construimos algo
-            <span>juntos?</span>
+            Hablemos
+            <span>de tu proyecto.</span>
           </h2>
           <div class="contact-actions reveal">
-            <a href="mailto:contacto@marp0604.com" class="contact-email" aria-label="Enviar email a contacto@marp0604.com">
+            <a href="mailto:contacto@marp0604.com" class="contact-email">
               contacto@marp0604.com
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
-            <a href="https://linkedin.com/in/marp0604" target="_blank" rel="noopener noreferrer" class="contact-linkedin" aria-label="Perfil de LinkedIn (abre en nueva pestaña)">
+            <a
+              href="https://linkedin.com/in/marp0604"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-linkedin"
+              aria-label="LinkedIn (abre en nueva pestaña)"
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               LinkedIn
             </a>
           </div>
         </section>
-
       </div>
+
     </main>
 
     <footer>
@@ -1040,7 +1049,7 @@ const jsonLd = {
         target="_blank"
         rel="noopener noreferrer"
         class="footer-github"
-        aria-label="Ver código fuente en GitHub (abre en nueva pestaña)"
+        aria-label="Código fuente en GitHub (abre en nueva pestaña)"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
         Código fuente
@@ -1052,107 +1061,111 @@ const jsonLd = {
       const cursor = document.getElementById('cursor');
       const ring = document.getElementById('cursor-ring');
       if (cursor && ring) {
-        let mx = 0, my = 0, rx = 0, ry = 0;
-        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-        (function animate() {
-          rx += (mx - rx) * 0.12;
-          ry += (my - ry) * 0.12;
+        let mx = -100, my = -100, rx = -100, ry = -100;
+        document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+        (function loop() {
+          rx += (mx - rx) * 0.18;
+          ry += (my - ry) * 0.18;
           if (cursor) { cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; }
-          if (ring)   { ring.style.left = rx + 'px';  ring.style.top = ry + 'px'; }
-          requestAnimationFrame(animate);
+          if (ring)   { ring.style.left   = rx + 'px'; ring.style.top   = ry + 'px'; }
+          requestAnimationFrame(loop);
         })();
       }
 
-      // Hero canvas
-      const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
-      if (canvas) {
+      // Hero canvas — partículas
+      (function() {
+        const canvas = document.getElementById('hero-canvas');
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let W = 0, H = 0;
-        const resize = () => { W = canvas.width = innerWidth; H = canvas.height = innerHeight; };
-        resize();
-        window.addEventListener('resize', resize);
-        const lines: { x: number; y: number; vx: number; vy: number; life: number; maxLife: number }[] = [];
-        for (let i = 0; i < 60; i++) {
-          lines.push({ x: Math.random()*1400, y: Math.random()*900, vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4, life: Math.random()*200, maxLife: 150+Math.random()*200 });
-        }
-        if (ctx) {
-          (function draw() {
-            ctx.clearRect(0,0,W,H);
-            lines.forEach(l => {
-              l.x += l.vx; l.y += l.vy; l.life++;
-              if (l.life > l.maxLife) { l.x = Math.random()*W; l.y = Math.random()*H; l.life = 0; }
-              const a = Math.sin(l.life / l.maxLife * Math.PI) * 0.6;
-              ctx.beginPath(); ctx.arc(l.x, l.y, 1, 0, Math.PI*2);
-              ctx.fillStyle = `rgba(200,240,96,${a})`; ctx.fill();
-            });
-            for (let i = 0; i < lines.length; i++) {
-              for (let j = i+1; j < lines.length; j++) {
-                const dx = lines[i].x - lines[j].x, dy = lines[i].y - lines[j].y;
-                const d = Math.sqrt(dx*dx+dy*dy);
-                if (d < 120) {
-                  ctx.beginPath();
-                  ctx.moveTo(lines[i].x, lines[i].y);
-                  ctx.lineTo(lines[j].x, lines[j].y);
-                  ctx.strokeStyle = `rgba(200,240,96,${(1-d/120)*0.15})`;
-                  ctx.lineWidth = 0.5; ctx.stroke();
-                }
+        let W = canvas.width  = window.innerWidth;
+        let H = canvas.height = window.innerHeight;
+        const N = 55;
+        const particles = Array.from({ length: N }, () => ({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          r: Math.random() * 1.5 + 0.4,
+        }));
+        window.addEventListener('resize', () => {
+          W = canvas.width  = window.innerWidth;
+          H = canvas.height = window.innerHeight;
+        });
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+            if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(200,240,96,0.7)';
+            ctx.fill();
+          });
+          for (let i = 0; i < N; i++) {
+            for (let j = i + 1; j < N; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const d = Math.sqrt(dx*dx + dy*dy);
+              if (d < 130) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(200,240,96,${(1 - d/130) * 0.18})`;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
               }
             }
-            requestAnimationFrame(draw);
-          })();
+          }
+          requestAnimationFrame(draw);
         }
-      }
+        draw();
+      })();
 
       // Hero reveal
       requestAnimationFrame(() => {
-        setTimeout(() => {
-          document.getElementById('he')?.classList.add('show');
-          document.getElementById('ht')?.classList.add('show');
-          document.getElementById('hb')?.classList.add('show');
-        }, 100);
+        ['he','ht','hb'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('show');
+        });
       });
 
       // Scroll reveal
-      const observer = new IntersectionObserver(entries => {
+      const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.1 });
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-      // Hamburger menu
-      const hamburger = document.getElementById('nav-hamburger-btn');
-      const mobileOverlay = document.getElementById('nav-mobile-overlay');
-      if (hamburger && mobileOverlay) {
-        hamburger.addEventListener('click', () => {
-          const isOpen = mobileOverlay.classList.contains('open');
-          if (isOpen) {
-            mobileOverlay.classList.remove('open');
-            hamburger.setAttribute('aria-expanded', 'false');
-            hamburger.setAttribute('aria-label', 'Abrir menú de navegación');
-            document.body.style.overflow = '';
-          } else {
-            mobileOverlay.classList.add('open');
-            hamburger.setAttribute('aria-expanded', 'true');
-            hamburger.setAttribute('aria-label', 'Cerrar menú de navegación');
-            document.body.style.overflow = 'hidden';
-          }
+      // Marquee duplicado
+      const track = document.getElementById('marquee-track');
+      if (track) {
+        const clone = track.cloneNode(true);
+        track.parentNode.appendChild(clone);
+      }
+
+      // Hamburger
+      const btn = document.getElementById('nav-hamburger-btn');
+      const overlay = document.getElementById('nav-mobile-overlay');
+      if (btn && overlay) {
+        const mobileLinks = overlay.querySelectorAll('.nav-mobile-link');
+        function openMenu() {
+          btn.setAttribute('aria-expanded', 'true');
+          btn.setAttribute('aria-label', 'Cerrar menú de navegación');
+          overlay.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'Abrir menú de navegación');
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+        btn.addEventListener('click', () => {
+          btn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
         });
-        mobileOverlay.querySelectorAll('.nav-mobile-link').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileOverlay.classList.remove('open');
-            hamburger.setAttribute('aria-expanded', 'false');
-            hamburger.setAttribute('aria-label', 'Abrir menú de navegación');
-            document.body.style.overflow = '';
-          });
-        });
-        document.addEventListener('keydown', e => {
-          if (e.key === 'Escape' && mobileOverlay.classList.contains('open')) {
-            mobileOverlay.classList.remove('open');
-            hamburger.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-            hamburger.focus();
-          }
-        });
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
       }
     </script>
+
   </body>
 </html>
