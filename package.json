@@ -1,7 +1,7 @@
 {
   "name": "marp0604-portfolio",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "node": ">=18.17.0"
   },
