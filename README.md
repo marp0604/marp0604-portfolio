@@ -1,18 +1,28 @@
 # marp0604.com — Portfolio personal
 
-Portfolio de Miguel Ángel Ramírez Pérez, Frontend Developer.
+![Astro](https://img.shields.io/badge/Astro-5.x-FF5D01?style=flat-square&logo=astro&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Deploy](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![License](https://img.shields.io/badge/Licencia-MIT-22c55e?style=flat-square)
 
-**[marp0604.com](https://marp0604.com)**
+Portfolio de **[Miguel Ángel Ramírez Pérez](https://marp0604.com)** — Desarrollador Multiplataforma.
+
+Construido con Astro, CSS propio y Canvas API. Sin librerías de componentes, sin atajos.
+
+🌐 **[marp0604.com](https://marp0604.com)**
 
 ---
 
 ## Stack
 
-- **Framework** — [Astro](https://astro.build) (static output)
-- **Estilos** — CSS propio, sin librerías de componentes
-- **Animaciones** — Canvas API, CSS custom
-- **Lenguaje** — TypeScript
-- **Deploy** — Vercel
+| Capa | Tecnología |
+| --- | --- |
+| Framework | [Astro](https://astro.build) — static output |
+| Estilos | CSS vanilla — sin frameworks |
+| Animaciones | Canvas API + CSS custom |
+| Lenguaje | TypeScript |
+| Deploy | Vercel |
+| Fuentes | [Fontshare](https://www.fontshare.com) (Cabinet Grotesk + Satoshi) |
 
 ## Desarrollo local
 
@@ -23,7 +33,7 @@ npm run dev
 
 Abre [localhost:4321](http://localhost:4321) en el navegador.
 
-## Comandos disponibles
+## Comandos
 
 | Comando | Acción |
 | --- | --- |
@@ -31,18 +41,18 @@ Abre [localhost:4321](http://localhost:4321) en el navegador.
 | `npm run build` | Build de producción en `./dist/` |
 | `npm run preview` | Previsualizar el build antes de desplegar |
 
-## Estructura del proyecto
+## Estructura
 
 ```
 /
-├── public/          # Assets estáticos
+├── public/          # Assets estáticos (imágenes, favicon, robots.txt)
 ├── src/
-│   ├── components/  # Componentes reutilizables
-│   ├── layouts/     # Layouts globales
-│   └── pages/       # Páginas (cada archivo = ruta)
-└── astro.config.mjs
+│   └── pages/       # index.astro — página principal
+├── astro.config.mjs
+├── vercel.json      # Headers de seguridad + configuración de deploy
+└── tsconfig.json
 ```
 
 ## Licencia
 
-Código fuente disponible públicamente. Si lo usas como referencia, menciona la fuente.
+MIT — Código fuente disponible públicamente. Si lo usas como referencia o inspiración, menciona la fuente.
