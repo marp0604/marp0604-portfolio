@@ -18,11 +18,15 @@
   --font-body:    'Satoshi', system-ui, sans-serif;
   --font-display: 'Cabinet Grotesk', sans-serif;
   --ease:         cubic-bezier(0.16, 1, 0.3, 1);
-  --text-xs:      clamp(0.75rem,  0.7rem  + 0.25vw, 0.8125rem);
-  --text-sm:      clamp(0.875rem, 0.85rem + 0.25vw, 0.9375rem);
-  --text-base:    clamp(1rem,     0.95rem + 0.25vw, 1.0625rem);
-  --text-lg:      clamp(1.125rem, 1rem    + 0.5vw,  1.375rem);
-  --text-hero:    clamp(3.5rem,   0.5rem  + 8vw,    9rem);
+
+  /* ── Escala tipográfica fluida completa ── */
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.8125rem);
+  --text-sm:   clamp(0.875rem, 0.85rem + 0.25vw, 0.9375rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.0625rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.5vw,  1.375rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2.25rem,  1rem    + 3.5vw,  4.5rem);
+  --text-hero: clamp(3.5rem,   0.5rem  + 8vw,    9rem);
 }
 
 html {
@@ -30,7 +34,19 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-padding-top: 5rem;
-  cursor: none;
+  /* cursor: auto por defecto — se anula en dispositivos con hover real */
+  cursor: auto;
+}
+
+/* Cursor custom solo cuando hay puntero fino y hover real (ratón / trackpad) */
+@media (hover: hover) and (pointer: fine) {
+  html { cursor: none; }
+}
+
+/* Forzar auto en touch / puntero grueso */
+@media (hover: none), (pointer: coarse) {
+  html { cursor: auto; }
+  #cursor, #cursor-ring { display: none; }
 }
 
 @supports (scroll-behavior: smooth) {
@@ -150,7 +166,7 @@ nav {
 .nav-mobile-links li:first-child { border-top: 1px solid var(--border); }
 .nav-mobile-links a {
   display: block; text-align: center; padding: 1.5rem 2rem;
-  font-family: var(--font-display); font-size: clamp(1.5rem, 5vw, 2rem);
+  font-family: var(--font-display); font-size: var(--text-xl);
   font-weight: 800; letter-spacing: -0.02em; color: var(--muted);
   text-decoration: none; text-transform: uppercase;
   transition: color 200ms, background 200ms;
@@ -267,7 +283,7 @@ nav {
 }
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  font-size: var(--text-2xl);
   font-weight: 900; letter-spacing: -0.03em;
   color: var(--text); line-height: 1;
 }
@@ -280,7 +296,7 @@ nav {
 .about-left { display: flex; flex-direction: column; gap: 2rem; }
 .about-statement {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+  font-size: var(--text-xl);
   font-weight: 700; line-height: 1.35;
   color: var(--text); letter-spacing: -0.02em;
 }
@@ -438,7 +454,7 @@ nav {
   text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 2.25rem;
 }
 .contact-title {
-  font-family: var(--font-display); font-size: clamp(3rem, 8vw, 7rem);
+  font-family: var(--font-display); font-size: var(--text-hero);
   font-weight: 900; letter-spacing: -0.04em;
   line-height: 1; color: var(--text); margin-bottom: 3rem;
 }
@@ -534,7 +550,6 @@ footer {
 }
 
 @media (max-width: 480px) {
-  html { cursor: auto; }
   #cursor, #cursor-ring { display: none; }
 }
 
