@@ -105,21 +105,46 @@ const hamburgerBtn = document.getElementById('nav-hamburger-btn');
 const overlay = document.getElementById('nav-mobile-overlay');
 if (hamburgerBtn && overlay) {
   const mobileLinks = overlay.querySelectorAll('.nav-mobile-link');
+  const isOpen = () => hamburgerBtn.getAttribute('aria-expanded') === 'true';
+  // Elementos enfocables del diálogo: botón de cierre (hamburguesa) + enlaces del overlay
+  const focusables = () => [hamburgerBtn, ...overlay.querySelectorAll('a[href]')];
+
   function openMenu() {
     hamburgerBtn.setAttribute('aria-expanded', 'true');
     hamburgerBtn.setAttribute('aria-label', 'Cerrar menú de navegación');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => mobileLinks[0]?.focus());
   }
-  function closeMenu() {
+  function closeMenu(returnFocus = false) {
     hamburgerBtn.setAttribute('aria-expanded', 'false');
     hamburgerBtn.setAttribute('aria-label', 'Abrir menú de navegación');
     overlay.classList.remove('open');
     document.body.style.overflow = '';
+    if (returnFocus) hamburgerBtn.focus();
   }
+
   hamburgerBtn.addEventListener('click', () => {
-    hamburgerBtn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+    isOpen() ? closeMenu(true) : openMenu();
   });
-  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  mobileLinks.forEach(link => link.addEventListener('click', () => closeMenu()));
+
+  document.addEventListener('keydown', (e) => {
+    if (!isOpen()) return;
+    if (e.key === 'Escape') { closeMenu(true); return; }
+    if (e.key !== 'Tab') return;
+    // Focus trap: mantiene el tabulador dentro del diálogo
+    const els = focusables();
+    const first = els[0];
+    const last = els[els.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
+
+  // Cerrar al pasar a escritorio (la hamburguesa desaparece a >768px)
+  const desktop = window.matchMedia('(min-width: 769px)');
+  desktop.addEventListener('change', (e) => { if (e.matches && isOpen()) closeMenu(); });
 }
