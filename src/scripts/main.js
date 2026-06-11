@@ -1,7 +1,9 @@
-// Email obfuscation — assembled at runtime so static scrapers don't find it
+// Activar animaciones reveal solo si JS carga correctamente
+document.body.classList.add('js-ready');
+
+// Email obfuscation
 (function () {
   const email = 'contacto' + '@' + 'marp0604' + '.' + 'com';
-
   const display = document.getElementById('email-display');
   if (display) {
     const link = document.createElement('a');
@@ -9,7 +11,6 @@
     link.textContent = email;
     display.appendChild(link);
   }
-
   const contactBtn = document.getElementById('contact-btn');
   const btnText = document.getElementById('contact-btn-text');
   if (contactBtn && btnText) {
@@ -20,15 +21,15 @@
 
 // Cursor
 const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-if (cursor && ring) {
+const cursorRing = document.getElementById('cursor-ring');
+if (cursor && cursorRing) {
   let mx = -100, my = -100, rx = -100, ry = -100;
   document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
   (function loop() {
     rx += (mx - rx) * 0.18;
     ry += (my - ry) * 0.18;
     cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    ring.style.left   = rx + 'px'; ring.style.top   = ry + 'px';
+    cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
     requestAnimationFrame(loop);
   })();
 }
