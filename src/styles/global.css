@@ -34,7 +34,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-padding-top: 5rem;
-  /* cursor: auto por defecto — se anula en dispositivos con hover real */
   cursor: auto;
 }
 
@@ -247,12 +246,19 @@ nav {
   position: relative; z-index: 1;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  overflow: hidden; padding: 1.1rem 0;
+  overflow: hidden;
+  padding: 1.1rem 0;
+  /* Una sola línea: altura fija para evitar que el track se doble en dos filas */
+  height: 3.2rem;
   background: var(--surface);
 }
 .marquee-track {
-  display: flex; gap: 4rem; white-space: nowrap; width: max-content;
-  animation: marquee 100s linear infinite;
+  display: flex;
+  flex-wrap: nowrap;        /* fuerza una sola fila sin romper */
+  gap: 4rem;
+  white-space: nowrap;
+  width: max-content;
+  animation: marquee 30s linear infinite; /* 30s: velocidad legible */
 }
 .marquee-track:hover { animation-play-state: paused; }
 .marquee-item {
@@ -260,6 +266,7 @@ nav {
   font-size: var(--text-sm); font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
   display: flex; align-items: center; gap: 4rem;
+  flex-shrink: 0;           /* impide que los items se compriman */
 }
 .marquee-item::after {
   content: ''; width: 4px; height: 4px; border-radius: 50%;
