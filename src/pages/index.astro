@@ -71,7 +71,10 @@ const stackGrupos = [
   },
 ];
 
+// Una sola copia — la animación CSS loop hace el efecto infinito sin duplicar el DOM
 const marqueeItems = [
+  "Frontend", "Astro", "React", "TypeScript",
+  "KMP", "CSS", "Multiplataforma", "Producto",
   "Frontend", "Astro", "React", "TypeScript",
   "KMP", "CSS", "Multiplataforma", "Producto",
 ];
@@ -213,7 +216,7 @@ const jsonLd = {
 
       <div class="marquee-wrap" aria-hidden="true">
         <div class="marquee-track" id="marquee-track">
-          {[...marqueeItems, ...marqueeItems].map((item) => (
+          {marqueeItems.map((item) => (
             <span class="marquee-item">{item}</span>
           ))}
         </div>
@@ -418,7 +421,7 @@ const jsonLd = {
       </a>
     </footer>
 
-    <script src="/scripts/main.js" is:inline></script>
+    <script src="/scripts/main.js"></script>
 
   </body>
 </html>

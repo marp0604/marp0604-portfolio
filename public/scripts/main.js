@@ -10,11 +10,11 @@
     display.appendChild(link);
   }
 
-  const btn = document.getElementById('contact-btn');
+  const contactBtn = document.getElementById('contact-btn');
   const btnText = document.getElementById('contact-btn-text');
-  if (btn && btnText) {
+  if (contactBtn && btnText) {
     btnText.textContent = email;
-    btn.addEventListener('click', () => { window.location.href = 'mailto:' + email; });
+    contactBtn.addEventListener('click', () => { window.location.href = 'mailto:' + email; });
   }
 })();
 
@@ -99,32 +99,25 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Marquee duplicate
-const track = document.getElementById('marquee-track');
-if (track) {
-  const clone = track.cloneNode(true);
-  track.parentNode.appendChild(clone);
-}
-
 // Hamburger menu
-const btn = document.getElementById('nav-hamburger-btn');
+const hamburgerBtn = document.getElementById('nav-hamburger-btn');
 const overlay = document.getElementById('nav-mobile-overlay');
-if (btn && overlay) {
+if (hamburgerBtn && overlay) {
   const mobileLinks = overlay.querySelectorAll('.nav-mobile-link');
   function openMenu() {
-    btn.setAttribute('aria-expanded', 'true');
-    btn.setAttribute('aria-label', 'Cerrar menú de navegación');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    hamburgerBtn.setAttribute('aria-label', 'Cerrar menú de navegación');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function closeMenu() {
-    btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-label', 'Abrir menú de navegación');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    hamburgerBtn.setAttribute('aria-label', 'Abrir menú de navegación');
     overlay.classList.remove('open');
     document.body.style.overflow = '';
   }
-  btn.addEventListener('click', () => {
-    btn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
   });
   mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
