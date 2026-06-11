@@ -137,39 +137,42 @@ const jsonLd = {
     <div id="cursor-ring" aria-hidden="true"></div>
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
-    <nav aria-label="Navegación principal">
-      <a href="/" class="nav-logo" aria-label="Inicio — Miguel Ángel">MA</a>
-      <ul class="nav-links" role="list">
-        <li><a href="#sobre-mi">Sobre mí</a></li>
-        <li><a href="#experiencia">Experiencia</a></li>
-        <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li>
-          <a
-            href="https://github.com/marp0604"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="nav-github"
-            aria-label="Perfil de GitHub (abre en nueva pestaña)"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
-            GitHub
-          </a>
-        </li>
-      </ul>
-      <button
-        class="nav-hamburger"
-        aria-label="Abrir menú de navegación"
-        aria-expanded="false"
-        aria-controls="nav-mobile-overlay"
-        id="nav-hamburger-btn"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
+    <!-- ✅ <nav> envuelto en <header> para semántica correcta -->
+    <header>
+      <nav aria-label="Navegación principal">
+        <a href="/" class="nav-logo" aria-label="Inicio — Miguel Ángel">MA</a>
+        <ul class="nav-links" role="list">
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li>
+            <a
+              href="https://github.com/marp0604"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-github"
+              aria-label="Perfil de GitHub (abre en nueva pestaña)"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+              GitHub
+            </a>
+          </li>
+        </ul>
+        <button
+          class="nav-hamburger"
+          aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+          aria-controls="nav-mobile-overlay"
+          id="nav-hamburger-btn"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </header>
 
     <div
       id="nav-mobile-overlay"
@@ -222,6 +225,7 @@ const jsonLd = {
         </div>
       </div>
 
+      <!-- ✅ Un único .content que engloba todas las secciones, incluido contacto -->
       <div class="content">
 
         <section class="section" id="sobre-mi" aria-labelledby="title-sobre-mi">
@@ -241,7 +245,7 @@ const jsonLd = {
               </p>
               <div class="about-links">
                 <a href="https://github.com/marp0604" target="_blank" rel="noopener noreferrer" class="about-link" aria-label="Perfil de GitHub (abre en nueva pestaña)">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 09.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
                   GitHub
                 </a>
                 <a href="https://linkedin.com/in/marp0604" target="_blank" rel="noopener noreferrer" class="about-link" aria-label="Perfil de LinkedIn (abre en nueva pestaña)">
@@ -377,9 +381,6 @@ const jsonLd = {
           </div>
         </section>
 
-      </div>
-
-      <div class="content">
         <section class="contact-big" id="contacto" aria-labelledby="title-contacto">
           <p class="contact-overline reveal">05 / Contacto</p>
           <h2 class="contact-title reveal" id="title-contacto">
@@ -403,6 +404,7 @@ const jsonLd = {
             </a>
           </div>
         </section>
+
       </div>
 
     </main>
@@ -421,7 +423,10 @@ const jsonLd = {
       </a>
     </footer>
 
-    <script src="/scripts/main.js"></script>
+    <!-- ✅ Script como módulo procesado por Astro (bundleado, defer automático, tree-shaking) -->
+    <script>
+      import '../scripts/main.js';
+    </script>
 
   </body>
 </html>
