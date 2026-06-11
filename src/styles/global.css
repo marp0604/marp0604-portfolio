@@ -19,7 +19,6 @@
   --font-display: 'Cabinet Grotesk', sans-serif;
   --ease:         cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* ── Escala tipográfica fluida completa ── */
   --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.8125rem);
   --text-sm:   clamp(0.875rem, 0.85rem + 0.25vw, 0.9375rem);
   --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.0625rem);
@@ -37,12 +36,9 @@ html {
   cursor: auto;
 }
 
-/* Cursor custom solo cuando hay puntero fino y hover real (ratón / trackpad) */
 @media (hover: hover) and (pointer: fine) {
   html { cursor: none; }
 }
-
-/* Forzar auto en touch / puntero grueso */
 @media (hover: none), (pointer: coarse) {
   html { cursor: auto; }
   #cursor, #cursor-ring { display: none; }
@@ -248,17 +244,16 @@ nav {
   border-bottom: 1px solid var(--border);
   overflow: hidden;
   padding: 1.1rem 0;
-  /* Una sola línea: altura fija para evitar que el track se doble en dos filas */
   height: 3.2rem;
   background: var(--surface);
 }
 .marquee-track {
   display: flex;
-  flex-wrap: nowrap;        /* fuerza una sola fila sin romper */
+  flex-wrap: nowrap;
   gap: 4rem;
   white-space: nowrap;
   width: max-content;
-  animation: marquee 30s linear infinite; /* 30s: velocidad legible */
+  animation: marquee 30s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
 .marquee-item {
@@ -266,7 +261,7 @@ nav {
   font-size: var(--text-sm); font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
   display: flex; align-items: center; gap: 4rem;
-  flex-shrink: 0;           /* impide que los items se compriman */
+  flex-shrink: 0;
 }
 .marquee-item::after {
   content: ''; width: 4px; height: 4px; border-radius: 50%;
@@ -502,12 +497,23 @@ footer {
 }
 .footer-github:hover { color: var(--text); }
 
-/* ── REVEAL ── */
+/* ── REVEAL ──
+   El contenido es visible por defecto (opacity:1, transform:none).
+   El JS añade la clase .js-ready al <body> para activar las animaciones.
+   Así, si el JS falla o tarda, el contenido siempre se ve. */
 .reveal {
-  opacity: 0; transform: translateY(28px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+}
+.js-ready .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -528,12 +534,10 @@ footer {
 @media (max-width: 1024px) {
   .about-grid { grid-template-columns: 1fr 300px; gap: 3.5rem; }
 }
-
 @media (max-width: 900px) {
   .stack-grupos { grid-template-columns: 1fr 1fr; }
   .stack-grupo:nth-child(3) { border-left: none; padding-left: 0; }
 }
-
 @media (max-width: 768px) {
   nav { padding: 1.125rem 1.5rem; }
   .nav-links { display: none; }
@@ -555,7 +559,6 @@ footer {
   .contact-big { padding: 5rem 0 6rem; }
   footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
 }
-
 @media (max-width: 480px) {
   #cursor, #cursor-ring { display: none; }
 }
