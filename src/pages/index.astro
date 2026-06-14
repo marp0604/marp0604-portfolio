@@ -2,6 +2,9 @@
 import '../styles/global.css';
 import IconGitHub from '../components/IconGitHub.astro';
 import IconLinkedIn from '../components/IconLinkedIn.astro';
+import IconCV from '../components/IconCV.astro';
+
+const cvUrl = "/CV-Miguel-Angel-Ramirez-Perez.pdf";
 
 const rol = "Desarrollador Multiplataforma";
 const descripcion = "Construyo productos digitales que funcionan en cualquier plataforma. Base sólida en programación, especializado en frontend con Astro, React y TypeScript, y expandiéndome hacia móvil con Kotlin Multiplatform.";
@@ -43,17 +46,42 @@ const proyectos = [
     titulo: "Vexelplaypro",
     descripcion: "Plataforma propia que empezó en web y va creciendo hacia móvil con Kotlin Multiplatform. Un proyecto real donde tomo todas las decisiones: producto, arquitectura y diseño.",
     tecnologias: ["React", "TypeScript", "KMP"],
-    url: "https://github.com/marp0604",
     num: "01",
     wip: true,
+    links: [
+      { tipo: "web", label: "Ver web", url: "https://vexelplaypro.com" },
+    ],
+  },
+  {
+    titulo: "Rick & Morty App",
+    descripcion: "App Android nativa en Kotlin que consume la Rick & Morty API: navegación por temporadas, listado de episodios y fichas de personajes con datos en tiempo real.",
+    tecnologias: ["Kotlin", "Android", "REST API"],
+    num: "02",
+    wip: false,
+    links: [
+      { tipo: "repo", label: "Repositorio", url: "https://github.com/marp0604/APIRickYMorty" },
+    ],
+  },
+  {
+    titulo: "Gestión de Tareas",
+    descripcion: "Aplicación de escritorio en Java con arquitectura MVC. Gestión de tareas organizadas por proyectos sobre MySQL, con interfaz en Swing.",
+    tecnologias: ["Java", "MVC", "MySQL"],
+    num: "03",
+    wip: false,
+    links: [
+      { tipo: "repo", label: "Repositorio", url: "https://github.com/marp0604/GestionTareas" },
+    ],
   },
   {
     titulo: "marp0604-portfolio",
     descripcion: "Este portfolio. Construido con Astro, animaciones CSS propias y canvas. Diseño de alto impacto visual sin una sola librería de componentes. Código abierto.",
     tecnologias: ["Astro", "CSS", "TypeScript"],
-    url: "https://github.com/marp0604/marp0604-portfolio",
-    num: "02",
+    num: "04",
     wip: false,
+    links: [
+      { tipo: "repo", label: "Repositorio", url: "https://github.com/marp0604/marp0604-portfolio" },
+      { tipo: "web", label: "Ver web", url: "https://marp0604.com" },
+    ],
   },
 ];
 
@@ -193,6 +221,10 @@ const jsonLd = {
           <IconLinkedIn />
           LinkedIn
         </a>
+        <a href={cvUrl} download aria-label="Descargar CV en PDF">
+          <IconCV />
+          CV
+        </a>
       </div>
     </div>
 
@@ -246,6 +278,10 @@ const jsonLd = {
                 <a href="https://linkedin.com/in/marp0604" target="_blank" rel="noopener noreferrer" class="about-link" aria-label="Perfil de LinkedIn (abre en nueva pestaña)">
                   <IconLinkedIn />
                   LinkedIn
+                </a>
+                <a href={cvUrl} download class="about-link about-link-cv" aria-label="Descargar CV en PDF">
+                  <IconCV />
+                  Descargar CV
                 </a>
               </div>
             </div>
@@ -333,13 +369,7 @@ const jsonLd = {
           </div>
           <div>
             {proyectos.map((p) => (
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="proyecto-item reveal"
-                aria-label={`Ver proyecto ${p.titulo} en GitHub (abre en nueva pestaña)`}
-              >
+              <article class="proyecto-item reveal">
                 <span class="proyecto-num" aria-hidden="true">{p.num}</span>
                 <div class="proyecto-info">
                   <div class="proyecto-title-row">
@@ -352,9 +382,23 @@ const jsonLd = {
                     ))}
                   </div>
                   <p class="proyecto-desc">{p.descripcion}</p>
+                  <div class="proyecto-links">
+                    {p.links.map((l) => (
+                      <a
+                        href={l.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="proyecto-link"
+                        aria-label={`${l.label} de ${p.titulo} (abre en nueva pestaña)`}
+                      >
+                        {l.tipo === "repo" && <IconGitHub />}
+                        <span>{l.label}</span>
+                        <span class="proyecto-link-arrow" aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
-                <span class="proyecto-arrow" aria-hidden="true">↗</span>
-              </a>
+              </article>
             ))}
           </div>
         </section>
@@ -404,6 +448,10 @@ const jsonLd = {
             >
               <IconLinkedIn size={16} />
               LinkedIn
+            </a>
+            <a href={cvUrl} download class="contact-linkedin" aria-label="Descargar CV en PDF">
+              <IconCV size={16} />
+              Descargar CV
             </a>
           </div>
         </section>
