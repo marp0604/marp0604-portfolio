@@ -313,6 +313,12 @@ nav {
   transition: color 200ms, border-color 200ms;
 }
 .about-link:hover { color: var(--text); border-color: var(--border-hover); }
+.about-link-cv {
+  color: var(--accent); border-color: rgba(200,240,96,0.35);
+  background: rgba(200,240,96,0.06);
+  transition: color 200ms, border-color 200ms, background 200ms;
+}
+.about-link-cv:hover { color: #060606; background: var(--accent); border-color: var(--accent); }
 .about-right { display: flex; flex-direction: column; gap: 0; }
 .about-photo-wrap {
   width: 100%; aspect-ratio: 3 / 4; overflow: hidden;
@@ -382,10 +388,10 @@ nav {
 
 /* ── PROYECTOS ── */
 .proyecto-item {
-  display: grid; grid-template-columns: 64px 1fr 2rem;
-  gap: 3rem; align-items: center;
+  display: grid; grid-template-columns: 64px 1fr;
+  gap: 3rem; align-items: start;
   padding: 2.5rem 0; border-top: 1px solid var(--border);
-  text-decoration: none; position: relative; overflow: hidden;
+  position: relative; overflow: hidden;
 }
 .proyecto-item:last-child { border-bottom: 1px solid var(--border); }
 .proyecto-item::after {
@@ -396,8 +402,6 @@ nav {
   transition: transform 400ms var(--ease);
 }
 .proyecto-item:hover::after { transform: scaleX(1); }
-.proyecto-item:hover .proyecto-num { color: var(--accent); }
-.proyecto-item:hover .proyecto-arrow { transform: translate(3px,-3px); color: var(--accent); }
 .proyecto-num {
   font-family: var(--font-display); font-size: var(--text-sm);
   color: var(--muted); font-weight: 700; letter-spacing: 0.06em;
@@ -420,11 +424,23 @@ nav {
   color: var(--muted); font-weight: 600; letter-spacing: 0.04em;
 }
 .proyecto-desc { font-size: var(--text-base); color: var(--muted); line-height: 1.7; max-width: 520px; margin-top: 0.6rem; }
-.proyecto-arrow {
-  font-size: 1.25rem; color: var(--muted);
-  transition: transform 280ms var(--ease), color 280ms;
-  flex-shrink: 0; line-height: 1;
+.proyecto-links { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.25rem; }
+.proyecto-link {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.01em;
+  color: var(--text); text-decoration: none;
+  padding: 0.4rem 0.85rem; border-radius: 999px;
+  border: 1px solid var(--border-hover);
+  transition: color 220ms, border-color 220ms, background 220ms;
 }
+.proyecto-link svg { width: 1rem; height: 1rem; }
+.proyecto-link-arrow { font-size: 0.95rem; line-height: 1; transition: transform 220ms var(--ease); }
+.proyecto-link:hover {
+  color: var(--accent); border-color: var(--accent);
+  background: rgba(200,240,96,0.08);
+}
+.proyecto-link:hover .proyecto-link-arrow { transform: translate(2px,-2px); }
+.proyecto-item:hover .proyecto-num { color: var(--accent); }
 
 /* ── STACK ── */
 .stack-grupos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
@@ -557,7 +573,6 @@ footer {
   .edu-item { grid-template-columns: 1fr; gap: 0.4rem; }
   .edu-periodo { text-align: left; }
   .proyecto-item { grid-template-columns: 52px 1fr; gap: 1.5rem; }
-  .proyecto-arrow { display: none; }
   .stack-grupos { grid-template-columns: 1fr; }
   .stack-grupo { padding: 2rem 0; border-left: none !important; }
   .contact-big { padding: 5rem 0 6rem; }
