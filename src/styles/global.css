@@ -121,8 +121,8 @@ nav.scrolled {
 }
 .nav-logo .dot {
   width: 8px; height: 8px; border-radius: 50%;
-  background: var(--lime); box-shadow: var(--glow);
-  animation: float 4s ease-in-out infinite;
+  background: var(--lime);
+  animation: dotPulse 2.8s ease-in-out infinite;
 }
 .nav-logo .slash { color: var(--lime); }
 .nav-logo .num { color: var(--muted); }
@@ -252,7 +252,7 @@ nav.scrolled {
   margin-top: 5rem; font-size: var(--text-xs); letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--muted);
 }
-.hero-scroll { display: inline-flex; align-items: center; gap: 0.5rem; animation: float 4s ease-in-out infinite; }
+.hero-scroll { display: inline-flex; align-items: center; gap: 0.5rem; animation: floatSoft 6s ease-in-out infinite; }
 .hero-scroll svg { width: 1rem; height: 1rem; color: var(--lime); }
 .hero-coords { font-family: var(--font-mono); }
 
@@ -457,7 +457,11 @@ footer { border-top: 1px solid var(--border); }
 .js-ready .reveal { opacity: 0; transform: translateY(24px); }
 .js-ready .reveal.visible { opacity: 1; transform: translateY(0); }
 
-@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes floatSoft { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes dotPulse {
+  0%,100% { box-shadow: 0 0 5px 0 rgba(200,240,96,0.35); opacity: 0.9; }
+  50%     { box-shadow: 0 0 16px 2px rgba(200,240,96,0.75); opacity: 1; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
