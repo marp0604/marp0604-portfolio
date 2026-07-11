@@ -6,6 +6,7 @@ import '../styles/global.css';
 import IconGitHub from '../components/IconGitHub.astro';
 import IconLinkedIn from '../components/IconLinkedIn.astro';
 import IconCV from '../components/IconCV.astro';
+import LogoMark from '../components/LogoMark.astro';
 
 const cvUrl = "/CV-Miguel-Angel-Ramirez-Perez.pdf";
 
@@ -160,9 +161,9 @@ const jsonLd = {
 
     <header>
       <nav aria-label="Navegación principal" id="nav">
-        <a href="/" class="nav-logo" aria-label="Inicio — Miguel Ángel Ramírez">
-          <span class="dot" aria-hidden="true"></span>
-          marp<span class="slash" aria-hidden="true">/</span><span class="num">0604</span>
+        <a href="/" class="nav-logo" aria-label="Inicio — marp0604">
+          <LogoMark class="nav-logo-mark" size={22} />
+          <span class="nav-logo-word">marp<span class="num">0604</span></span>
         </a>
         <ul class="nav-links" role="list">
           <li><a href="#sobre-mi">Sobre mí</a></li>
@@ -197,6 +198,7 @@ const jsonLd = {
       aria-label="Menú de navegación"
       aria-modal="true"
     >
+      <LogoMark class="nav-mobile-logo" size={44} />
       <ul class="nav-mobile-links" role="list">
         <li><a href="#sobre-mi" class="nav-mobile-link">Sobre mí</a></li>
         <li><a href="#experiencia" class="nav-mobile-link">Experiencia</a></li>

@@ -1,0 +1,7 @@
+<svg width="512" height="512" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Logo marp0604</title>
+  <desc>Monograma M sobre fondo carbón, mitad izquierda en blanco hueso y mitad derecha en verde lima</desc>
+  <rect x="0" y="0" width="200" height="200" rx="44" fill="#141519"/>
+  <path d="M40,160 L40,40 L100,110" fill="none" stroke="#f2f3f5" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M100,110 L160,40 L160,160" fill="none" stroke="#c8f060" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg width="460" height="120" viewBox="0 0 460 120" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Lockup marp0604</title>
+  <desc>Marca M junto al wordmark marp barra 0604, barra en verde lima</desc>
+  <rect x="0" y="0" width="460" height="120" rx="16" fill="#141519"/>
+  <g transform="translate(10,10)">
+    <rect x="0" y="0" width="100" height="100" rx="22" fill="#1a1c22"/>
+    <path d="M20,80 L20,20 L50,55" fill="none" stroke="#f2f3f5" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M50,55 L80,20 L80,80" fill="none" stroke="#c8f060" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="130" y="72" font-family="'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif" font-size="52" font-weight="700" fill="#f2f3f5">marp0604</text>
+</svg>
