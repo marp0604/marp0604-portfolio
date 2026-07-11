@@ -128,7 +128,7 @@ const jsonLd = {
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
 
-    <meta name="theme-color" content="#080808" />
+    <meta name="theme-color" content="#1f43ff" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
@@ -160,7 +160,6 @@ const jsonLd = {
 
     <div id="cursor" aria-hidden="true"></div>
     <div id="cursor-ring" aria-hidden="true"></div>
-    <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
     <header>
       <nav aria-label="Navegación principal">
@@ -231,16 +230,19 @@ const jsonLd = {
     <main id="main-content">
 
       <section class="hero" aria-label="Presentación">
-        <p class="hero-eyebrow" id="he">✦ Miguel Ángel Ramírez · Desarrollador Multiplataforma</p>
-        <h1 class="hero-title" id="ht">
-          Construyo
-          <span class="line2">productos<span class="accent" aria-hidden="true">.</span></span>
-        </h1>
-        <div class="hero-bottom" id="hb">
-          <p class="hero-desc">Frontend sólido, arquitectura pensada. Del web al móvil con KMP.</p>
-          <div class="hero-scroll" aria-hidden="true">
-            <div class="scroll-line"></div>
-            <span>Scroll</span>
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-inner">
+          <p class="hero-eyebrow" id="he">✦ Miguel Ángel Ramírez · Desarrollador Multiplataforma</p>
+          <h1 class="hero-title" id="ht">
+            Construyo
+            <span class="line2">productos<span class="accent" aria-hidden="true">.</span></span>
+          </h1>
+          <div class="hero-bottom" id="hb">
+            <p class="hero-desc">Frontend sólido, arquitectura pensada. Del web al móvil con KMP.</p>
+            <div class="hero-scroll" aria-hidden="true">
+              <div class="scroll-line"></div>
+              <span>Scroll</span>
+            </div>
           </div>
         </div>
       </section>

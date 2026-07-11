@@ -40,8 +40,10 @@ if (cursor && cursorRing) {
   if (!canvas) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const ctx = canvas.getContext('2d');
-  let W = canvas.width  = window.innerWidth;
-  let H = canvas.height = window.innerHeight;
+  // El canvas se dimensiona al hero (su contenedor), no a la ventana completa
+  const host = canvas.parentElement || canvas;
+  let W = canvas.width  = host.offsetWidth;
+  let H = canvas.height = host.offsetHeight;
   const N = 55;
   const particles = Array.from({ length: N }, () => ({
     x: Math.random() * W, y: Math.random() * H,
@@ -50,8 +52,8 @@ if (cursor && cursorRing) {
     r: Math.random() * 1.5 + 0.4,
   }));
   window.addEventListener('resize', () => {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+    W = canvas.width  = host.offsetWidth;
+    H = canvas.height = host.offsetHeight;
   });
   function draw() {
     ctx.clearRect(0, 0, W, H);
@@ -61,7 +63,7 @@ if (cursor && cursorRing) {
       if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,240,96,0.7)';
+      ctx.fillStyle = 'rgba(255,255,255,0.75)';
       ctx.fill();
     });
     for (let i = 0; i < N; i++) {
@@ -73,7 +75,7 @@ if (cursor && cursorRing) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(200,240,96,${(1 - d / 130) * 0.18})`;
+          ctx.strokeStyle = `rgba(255,255,255,${(1 - d / 130) * 0.22})`;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
