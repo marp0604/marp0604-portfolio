@@ -11,7 +11,7 @@ import LogoMark from '../components/LogoMark.astro';
 const cvUrl = "/CV-Miguel-Angel-Ramirez-Perez.pdf";
 
 const rol = "Desarrollador Multiplataforma";
-const descripcion = "Portfolio de Miguel Ángel Ramírez Pérez (marp0604), desarrollador multiplataforma en Almería. Frontend con Astro, React y TypeScript, y móvil con Kotlin Multiplatform.";
+const descripcion = "Portfolio de Miguel Ángel Ramírez Pérez (marp0604), desarrollador multiplataforma en Almería. Frontend con Astro, React y TypeScript, móvil con Kotlin Multiplatform. Disponible para proyectos freelance.";
 const canonicalURL = "https://marp0604.com/";
 const ogImage = "https://marp0604.com/og-image.png";
 
@@ -49,47 +49,72 @@ const formacion = [
   },
 ];
 
+const servicios = [
+  {
+    num: "01",
+    titulo: "Webs y landing pages",
+    descripcion: "Sitios rápidos, cuidados y con buen SEO técnico. Astro, React y TypeScript.",
+  },
+  {
+    num: "02",
+    titulo: "Apps móvil",
+    descripcion: "Apps nativas y multiplataforma con Kotlin Multiplatform (KMP), desde una única base de código para Android e iOS.",
+  },
+  {
+    num: "03",
+    titulo: "Producto propio",
+    descripcion: "Vexelplaypro es mi propio producto SaaS, ya validado en producción. Si buscas algo más que una web —una plataforma completa con backend, usuarios y lógica de negocio— también puedo construírtela desde cero.",
+  },
+];
+
 const proyectos = [
   {
     titulo: "Vexelplaypro",
     descripcion: "Plataforma propia que empezó en web y va creciendo hacia móvil con Kotlin Multiplatform. Un proyecto real donde tomo todas las decisiones: producto, arquitectura y diseño.",
     tecnologias: ["React", "TypeScript", "KMP"],
     num: "01",
-    wip: true,
+    badge: "En progreso",
     links: [
       { tipo: "web", label: "Ver web", url: "https://vexelplaypro.com" },
     ],
   },
   {
-    titulo: "Rick & Morty App",
-    descripcion: "App Android nativa en Kotlin que consume la Rick & Morty API: navegación por temporadas, listado de episodios y fichas de personajes con datos en tiempo real.",
-    tecnologias: ["Kotlin", "Android", "REST API"],
+    titulo: "Spider-Man: Brand New Day",
+    descripcion: "Colaboración freelance en la web promocional de la película, junto al desarrollador y streamer Midudev.",
+    tecnologias: ["Astro", "TypeScript", "Freelance"],
     num: "02",
-    wip: false,
+    badge: "Freelance",
     links: [
-      { tipo: "repo", label: "Repositorio", url: "https://github.com/marp0604/APIRickYMorty" },
-    ],
-  },
-  {
-    titulo: "Gestión de Tareas",
-    descripcion: "Aplicación de escritorio en Java con arquitectura MVC. Gestión de tareas organizadas por proyectos sobre MySQL, con interfaz en Swing.",
-    tecnologias: ["Java", "MVC", "MySQL"],
-    num: "03",
-    wip: false,
-    links: [
-      { tipo: "repo", label: "Repositorio", url: "https://github.com/marp0604/GestionTareas" },
+      { tipo: "web", label: "Ver web", url: "https://spidermanbrandnewday.es" },
     ],
   },
   {
     titulo: "marp0604-portfolio",
     descripcion: "Este portfolio. Construido con Astro, animaciones CSS propias y fuentes auto-alojadas. Diseño de alto impacto visual sin una sola librería de componentes. Código abierto.",
     tecnologias: ["Astro", "CSS", "TypeScript"],
-    num: "04",
-    wip: false,
+    num: "03",
+    badge: null,
     links: [
       { tipo: "repo", label: "Repositorio", url: "https://github.com/marp0604/marp0604-portfolio" },
       { tipo: "web", label: "Ver web", url: "https://marp0604.com" },
     ],
+  },
+];
+
+// Proyectos de aprendizaje: se muestran aparte, con menos peso visual, para que
+// los primeros casos que se vean sean los reales (Vexelplaypro y Spider-Man).
+const otrosProyectos = [
+  {
+    titulo: "Rick & Morty App",
+    descripcion: "App Android nativa en Kotlin que consume la Rick & Morty API: navegación por temporadas, listado de episodios y fichas de personajes.",
+    tecnologias: ["Kotlin", "Android", "REST API"],
+    repo: "https://github.com/marp0604/APIRickYMorty",
+  },
+  {
+    titulo: "Gestión de Tareas",
+    descripcion: "Aplicación de escritorio en Java con arquitectura MVC. Gestión de tareas organizadas por proyectos sobre MySQL, con interfaz en Swing.",
+    tecnologias: ["Java", "MVC", "MySQL"],
+    repo: "https://github.com/marp0604/GestionTareas",
   },
 ];
 
@@ -167,15 +192,17 @@ const jsonLd = {
         </a>
         <ul class="nav-links" role="list">
           <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#servicios">Servicios</a></li>
           <li><a href="#experiencia">Experiencia</a></li>
           <li><a href="#formacion">Formación</a></li>
           <li><a href="#proyectos">Proyectos</a></li>
           <li><a href="#stack">Stack</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
-        <a href="#contacto" class="nav-available">
+        <a href="#contacto" class="nav-available" aria-label="Disponible para proyectos freelance — ir a contacto">
           <span class="dot" aria-hidden="true"></span>
-          Disponible
+          {/* La cola se oculta en pantallas estrechas: queda solo «Disponible» */}
+          <span>Disponible<span class="nav-available-tail"> para proyectos freelance</span></span>
         </a>
         <button
           class="nav-hamburger"
@@ -199,8 +226,13 @@ const jsonLd = {
       aria-modal="true"
     >
       <LogoMark class="nav-mobile-logo" size={44} />
+      <p class="nav-mobile-available">
+        <span class="dot" aria-hidden="true"></span>
+        Disponible para proyectos freelance
+      </p>
       <ul class="nav-mobile-links" role="list">
         <li><a href="#sobre-mi" class="nav-mobile-link">Sobre mí</a></li>
+        <li><a href="#servicios" class="nav-mobile-link">Servicios</a></li>
         <li><a href="#experiencia" class="nav-mobile-link">Experiencia</a></li>
         <li><a href="#formacion" class="nav-mobile-link">Formación</a></li>
         <li><a href="#proyectos" class="nav-mobile-link">Proyectos</a></li>
@@ -315,8 +347,30 @@ const jsonLd = {
           </div>
         </section>
 
+        <section class="section" id="servicios" aria-labelledby="title-servicios">
+          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span>02 — Servicios</span></p>
+          <h2 class="section-title reveal" id="title-servicios">En qué puedo ayudarte</h2>
+          <div class="serv-grid">
+            {servicios.map((s) => (
+              <article class="serv-card reveal">
+                <h3 class="serv-titulo">
+                  <span class="serv-num" aria-hidden="true">{s.num} ·</span>
+                  {s.titulo}
+                </h3>
+                <p class="serv-desc">{s.descripcion}</p>
+              </article>
+            ))}
+          </div>
+          <div class="serv-cta reveal">
+            <a href="#contacto" class="btn btn-primary">
+              Hablemos de tu proyecto
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+
         <section class="section" id="experiencia" aria-labelledby="title-experiencia">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-experiencia">02 — Experiencia</span></p>
+          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-experiencia">03 — Experiencia</span></p>
           <div class="exp-list">
             {experiencia.map((e) => (
               <article class="exp-card reveal">
@@ -346,7 +400,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="formacion" aria-labelledby="title-formacion">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-formacion">03 — Formación</span></p>
+          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-formacion">04 — Formación</span></p>
           <div class="edu-grid">
             {formacion.map((f) => (
               <article class="edu-card reveal">
@@ -362,7 +416,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="proyectos" aria-labelledby="title-proyectos">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-proyectos">04 — Proyectos</span></p>
+          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-proyectos">05 — Proyectos</span></p>
           <div class="proyecto-list">
             {proyectos.map((p) => (
               <article class="proyecto-item reveal">
@@ -370,7 +424,7 @@ const jsonLd = {
                 <div>
                   <div class="proyecto-title-row">
                     <span class="proyecto-name">{p.titulo}</span>
-                    {p.wip && <span class="proyecto-badge">En progreso</span>}
+                    {p.badge && <span class="proyecto-badge">{p.badge}</span>}
                   </div>
                   <p class="proyecto-desc">{p.descripcion}</p>
                   <div class="proyecto-tags">
@@ -397,10 +451,39 @@ const jsonLd = {
               </article>
             ))}
           </div>
+
+          <div class="otros">
+            <p class="otros-label reveal">Otros proyectos <span aria-hidden="true">·</span> aprendizaje</p>
+            <div class="otros-grid">
+              {otrosProyectos.map((p) => (
+                <article class="otros-card reveal">
+                  <h3 class="otros-titulo">{p.titulo}</h3>
+                  <p class="otros-desc">{p.descripcion}</p>
+                  <div class="otros-foot">
+                    <div class="proyecto-tags">
+                      {p.tecnologias.map((t) => (
+                        <span class="tag">{t}</span>
+                      ))}
+                    </div>
+                    <a
+                      href={p.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="otros-link"
+                      aria-label={`Repositorio de ${p.titulo} (abre en nueva pestaña)`}
+                    >
+                      <IconGitHub />
+                      <span>Repositorio</span>
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section class="section" id="stack" aria-labelledby="title-stack">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-stack">05 — Stack</span></p>
+          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-stack">06 — Stack</span></p>
           <div class="stack-grid">
             {stackGrupos.map((g) => (
               <div class="stack-card reveal">
@@ -425,13 +508,13 @@ const jsonLd = {
         <div class="bg-grid" aria-hidden="true"></div>
         <div class="glow-blob" aria-hidden="true"></div>
         <div class="container">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span>06 — Contacto</span></p>
+          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span>07 — Contacto</span></p>
           <h2 class="contact-title reveal" id="title-contacto">
             Hablemos de
             <span class="accent">tu proyecto.</span>
           </h2>
           <p class="contact-desc reveal">
-            Abierto a colaboraciones, oportunidades interesantes o simplemente para intercambiar ideas sobre producto y frontend.
+            ¿Tienes un proyecto en mente? Trabajo en Farmacias.com y en paralelo acepto proyectos freelance de desarrollo web y apps. Escríbeme y hablamos.
           </p>
           <div class="contact-actions reveal">
             <button id="contact-btn" class="contact-email" type="button">
