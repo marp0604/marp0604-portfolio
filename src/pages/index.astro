@@ -1,5 +1,4 @@
 ---
-import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
@@ -13,7 +12,7 @@ const cvUrl = "/CV-Miguel-Angel-Ramirez-Perez.pdf";
 const rol = "Desarrollador Multiplataforma";
 const descripcion = "Portfolio de Miguel Ángel Ramírez Pérez (marp0604), desarrollador multiplataforma en Almería. Disponible para proyectos freelance: web con Astro y React, móvil con Kotlin Multiplatform.";
 const canonicalURL = "https://marp0604.com/";
-const ogImage = "https://marp0604.com/og-image.png";
+const ogImage = "https://marp0604.com/og-image.jpg";
 
 const experiencia = [
   {
@@ -63,13 +62,13 @@ const servicios = [
   {
     num: "03",
     titulo: "Producto propio",
-    descripcion: "Vexelplaypro es mi propio producto SaaS, ya validado en producción. Si buscas algo más que una web —una plataforma completa con backend, usuarios y lógica de negocio— también puedo construírtela desde cero.",
+    descripcion: "VexelPlayPro es mi propio producto SaaS, ya validado en producción. Si buscas algo más que una web —una plataforma completa con backend, usuarios y lógica de negocio— también puedo construírtela desde cero.",
   },
 ];
 
 const proyectos = [
   {
-    titulo: "Vexelplaypro",
+    titulo: "VexelPlayPro",
     descripcion: "Plataforma propia que empezó en web y va creciendo hacia móvil con Kotlin Multiplatform. Un proyecto real donde tomo todas las decisiones: producto, arquitectura y diseño.",
     tecnologias: ["React", "TypeScript", "KMP"],
     num: "01",
@@ -102,7 +101,7 @@ const proyectos = [
 ];
 
 // Proyectos de aprendizaje: se muestran aparte, con menos peso visual, para que
-// los primeros casos que se vean sean los reales (Vexelplaypro y Spider-Man).
+// los primeros casos que se vean sean los reales (VexelPlayPro y Spider-Man).
 const otrosProyectos = [
   {
     titulo: "Rick & Morty App",
@@ -143,6 +142,7 @@ const jsonLd = {
   "description": descripcion,
   "knowsAbout": ["HTML", "CSS", "JavaScript", "TypeScript", "Astro", "React", "Node.js", "Git", "Kotlin Multiplatform"],
   "nationality": "ES",
+  "image": "https://marp0604.com/perfil.jpg",
   "sameAs": ["https://github.com/marp0604", "https://linkedin.com/in/marp0604"],
 };
 ---
@@ -158,7 +158,7 @@ const jsonLd = {
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
 
-    <meta name="theme-color" content="#141519" />
+    <meta name="theme-color" content="#16181d" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
@@ -167,6 +167,7 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Miguel Ángel Ramírez Pérez — Construyo productos útiles para mi entorno" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="marp0604.com" />
 
@@ -176,7 +177,10 @@ const jsonLd = {
     <meta name="twitter:description" content={descripcion} />
     <meta name="twitter:image" content={ogImage} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
@@ -187,8 +191,8 @@ const jsonLd = {
     <header>
       <nav aria-label="Navegación principal" id="nav">
         <a href="/" class="nav-logo" aria-label="Inicio — marp0604">
-          <LogoMark class="nav-logo-mark" size={22} />
-          <span class="nav-logo-word">marp<span class="num">0604</span></span>
+          <LogoMark class="nav-logo-mark" />
+          <span class="nav-logo-word">marp0604</span>
         </a>
         <ul class="nav-links" role="list">
           <li><a href="#sobre-mi">Sobre mí</a></li>
@@ -225,7 +229,7 @@ const jsonLd = {
       aria-label="Menú de navegación"
       aria-modal="true"
     >
-      <LogoMark class="nav-mobile-logo" size={44} />
+      <LogoMark class="nav-mobile-logo" />
       <p class="nav-mobile-available">
         <span class="dot" aria-hidden="true"></span>
         Disponible para proyectos freelance
@@ -263,12 +267,11 @@ const jsonLd = {
         <div class="glow-blob" aria-hidden="true"></div>
         <div class="container">
           <p class="eyebrow reveal">
-            <span class="rule" aria-hidden="true"></span>
-            <span>Miguel Ángel Ramírez Pérez · <span class="lime">Desarrollador Multiplataforma</span></span>
+            <span>Miguel Ángel Ramírez Pérez</span>
+            <span class="accent"><span aria-hidden="true">// </span>desarrollador multiplataforma</span>
           </p>
           <h1 class="hero-title reveal">
-            Construyo
-            <span class="accent">productos.</span>
+            Construyo productos <span class="accent">útiles</span> para mi entorno<span class="cursor" aria-hidden="true"></span>
           </h1>
           <div class="hero-lower reveal">
             <p class="hero-desc">
@@ -295,14 +298,14 @@ const jsonLd = {
       <div class="container">
 
         <section class="section" id="sobre-mi" aria-labelledby="title-sobre-mi">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-sobre-mi">01 — Sobre mí</span></p>
+          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-sobre-mi">sobre mí</span></p>
           <div class="about-grid">
             <div class="about-photo reveal">
               <img
                 src="/perfil.jpg"
                 alt="Miguel Ángel Ramírez Pérez — Desarrollador Multiplataforma"
                 width="340"
-                height="453"
+                height="340"
                 loading="lazy"
                 decoding="async"
               />
@@ -316,7 +319,7 @@ const jsonLd = {
                   Estudié DAM en el IES Celia Viñas de Almería. Aprendí a programar de verdad: algoritmos, estructuras de datos, lógica sin atajos. Después aterricé en el frontend, donde esa base importa más.
                 </p>
                 <p>
-                  Hoy trabajo en Farmacias.com sobre un e-commerce real y en paralelo desarrollo Vexelplaypro, mi proyecto propio, que ya camina hacia móvil con Kotlin Multiplatform.
+                  Hoy trabajo en Farmacias.com sobre un e-commerce real y en paralelo desarrollo VexelPlayPro, mi proyecto propio, que ya camina hacia móvil con Kotlin Multiplatform.
                 </p>
               </div>
               <div class="about-quick">
@@ -348,7 +351,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="servicios" aria-labelledby="title-servicios">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span>02 — Servicios</span></p>
+          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span>servicios</span></p>
           <h2 class="section-title reveal" id="title-servicios">En qué puedo ayudarte</h2>
           <div class="serv-grid">
             {servicios.map((s) => (
@@ -370,7 +373,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="experiencia" aria-labelledby="title-experiencia">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-experiencia">03 — Experiencia</span></p>
+          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-experiencia">experiencia</span></p>
           <div class="exp-list">
             {experiencia.map((e) => (
               <article class="exp-card reveal">
@@ -400,7 +403,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="formacion" aria-labelledby="title-formacion">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-formacion">04 — Formación</span></p>
+          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-formacion">formación</span></p>
           <div class="edu-grid">
             {formacion.map((f) => (
               <article class="edu-card reveal">
@@ -416,7 +419,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="proyectos" aria-labelledby="title-proyectos">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-proyectos">05 — Proyectos</span></p>
+          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-proyectos">proyectos</span></p>
           <div class="proyecto-list">
             {proyectos.map((p) => (
               <article class="proyecto-item reveal">
@@ -483,7 +486,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="stack" aria-labelledby="title-stack">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span id="title-stack">06 — Stack</span></p>
+          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-stack">stack</span></p>
           <div class="stack-grid">
             {stackGrupos.map((g) => (
               <div class="stack-card reveal">
@@ -508,10 +511,10 @@ const jsonLd = {
         <div class="bg-grid" aria-hidden="true"></div>
         <div class="glow-blob" aria-hidden="true"></div>
         <div class="container">
-          <p class="section-eyebrow reveal"><span class="rule" aria-hidden="true"></span><span>07 — Contacto</span></p>
+          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span>contacto</span></p>
           <h2 class="contact-title reveal" id="title-contacto">
             Hablemos de
-            <span class="accent">tu proyecto.</span>
+            <span class="accent">tu proyecto<span class="cursor" aria-hidden="true"></span></span>
           </h2>
           <p class="contact-desc reveal">
             ¿Tienes un proyecto en mente? Trabajo en Farmacias.com y en paralelo acepto proyectos freelance de desarrollo web y apps. Escríbeme y hablamos.

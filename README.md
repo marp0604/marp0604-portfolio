@@ -34,7 +34,7 @@ El objetivo fue construir algo rápido, limpio y que refleje cómo trabajo: con 
 | Lenguaje | TypeScript 5 | Tipado estricto desde el inicio |
 | Estilos | CSS vanilla | Control total, sin overhead |
 | Animaciones | Canvas API + CSS custom | Sin dependencias externas |
-| Tipografía | [Fontshare](https://www.fontshare.com) | Cabinet Grotesk + Satoshi |
+| Tipografía | [Fontsource](https://fontsource.org) (auto-alojadas) | Inter + JetBrains Mono, según el kit de marca |
 | Deploy | Vercel | CI/CD automático desde `master` |
 
 ---
@@ -45,8 +45,10 @@ El objetivo fue construir algo rápido, limpio y que refleje cómo trabajo: con 
 /
 ├── public/
 │   ├── perfil.jpg          # Foto de perfil
-│   ├── og-image.png        # Imagen para Open Graph / redes sociales
-│   ├── favicon.svg
+│   ├── og-image.jpg        # Imagen para Open Graph / redes sociales (1200×630)
+│   ├── favicon.ico         # + favicon-32, apple-touch-icon, icon-192/512
+│   ├── site.webmanifest
+│   ├── brand/              # Logos >MA_ del kit de marca
 │   └── robots.txt
 ├── src/
 │   ├── pages/

@@ -1,0 +1,11 @@
+{
+  "name": "Miguel Ángel Ramírez Pérez (marp0604)",
+  "short_name": "marp0604",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#16181d",
+  "background_color": "#16181d",
+  "display": "browser"
+}
