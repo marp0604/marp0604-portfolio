@@ -27,7 +27,8 @@ Requiere Node.js. No hay tests ni linter configurados; la verificación es
 ## Estructura
 - `src/pages/index.astro` — **toda la página**. El contenido (experiencia,
   formación, proyectos, stack) vive en **arrays en el frontmatter**; edítalos ahí.
-  Incluye `<head>` (SEO/OG/Twitter), JSON-LD `Person`, e importa las fuentes.
+  Incluye `<head>` (SEO/OG/Twitter), JSON-LD (`@graph` generado desde esos
+  arrays), e importa las fuentes.
 - `src/styles/global.css` — todo el estilo y los tokens de diseño.
 - `src/scripts/main.js` — JS del cliente: desofuscación del email, nav con
   blur al hacer scroll, reveals al scroll (IntersectionObserver) y menú móvil
@@ -85,10 +86,22 @@ Push a **`master`** → Vercel despliega producción automáticamente en
 `marp0604.com`. Trabaja en rama y haz merge cuando esté revisado (o commitea
 directo a master para cambios triviales que quieras publicar ya).
 
-## SEO
-`site` configurado en `astro.config.mjs`, sitemap en `/sitemap-index.xml`,
-`robots.txt` permitiendo indexación, canonical, OG/Twitter y JSON-LD `Person`
-(con `alternateName: "marp0604"`). La marca **marp0604** está en el `<title>` y
-la meta description. El sitio ya sale el primero en Google al buscar "marp0604".
-Para reindexar tras cambios grandes: Google Search Console → enviar sitemap /
-solicitar indexación.
+## SEO y GEO (buscadores con IA)
+- `site` en `astro.config.mjs`; sitemap en `/sitemap-index.xml` con `lastmod`
+  (fecha del build).
+- `<title>`: «Miguel Ángel Ramírez (marp0604) — Desarrollador freelance en
+  Almería» (marca + intención de búsqueda, ~65 caracteres). Meta description,
+  canonical, `robots` con `max-image-preview:large`, OG tipo `profile` y Twitter.
+- Encabezados: el `<h1>` incluye nombre y rol (el eyebrow del hero) además del
+  lema; cada sección tiene su `<h2>` (las etiquetas `// tema`) y proyectos y
+  grupos del stack son `<h3>`. Mantener esa jerarquía al añadir secciones.
+- JSON-LD `@graph`: `ProfilePage` → `Person` (con `alternateName: "marp0604"`,
+  formación, empresa, servicios como `makesOffer`), `WebSite` e `ItemList` de
+  proyectos. Se genera desde los arrays del frontmatter. El email NO va en el
+  JSON-LD ni en `llms.txt` (en la página está ofuscado).
+- GEO: `public/llms.txt` resume el perfil en Markdown para asistentes de IA y
+  `robots.txt` permite explícitamente sus bots. **`llms.txt` es estático: si
+  cambia el contenido (experiencia, proyectos, servicios…), actualízalo a mano.**
+- El sitio ya sale el primero en Google al buscar "marp0604". Para reindexar
+  tras cambios grandes: Google Search Console → enviar sitemap / solicitar
+  indexación.

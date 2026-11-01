@@ -243,9 +243,13 @@ nav:has(.nav-hamburger[aria-expanded="true"]) .nav-logo { visibility: hidden; }
   font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text); font-weight: 500;
 }
 .eyebrow .accent { color: var(--accent); }
+/* Las barras son decoración: van en CSS para que no formen parte del texto del
+   encabezado (buscadores e IAs leen «desarrollador multiplataforma», no «// …»).
+   La segunda declaración las oculta a lectores de pantalla donde se soporta. */
+.eyebrow .accent::before { content: "// "; content: "// " / ""; }
 
 .hero-title {
-  font-family: var(--font-display);
+  display: block; font-family: var(--font-display);
   font-size: var(--text-hero); font-weight: 800;
   line-height: 0.95; letter-spacing: -0.045em;
   margin-top: 2rem; text-wrap: balance;
@@ -300,6 +304,7 @@ nav:has(.nav-hamburger[aria-expanded="true"]) .nav-logo { visibility: hidden; }
   font-size: var(--text-sm); font-weight: 500;
   color: var(--accent); font-family: var(--font-mono);
 }
+.section-eyebrow::before { content: "//"; content: "//" / ""; }
 /* Cuando la sección lleva titular, el eyebrow se pega a él */
 .section-eyebrow:has(+ .section-title) { margin-bottom: 1.25rem; }
 .section-title {
@@ -489,7 +494,7 @@ nav:has(.nav-hamburger[aria-expanded="true"]) .nav-logo { visibility: hidden; }
 }
 .stack-label {
   display: flex; align-items: center; gap: 0.5rem;
-  font-family: var(--font-mono); font-size: var(--text-xs);
+  font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 400;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
 }
 .stack-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: var(--glow); }

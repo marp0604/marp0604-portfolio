@@ -1,0 +1,46 @@
+# Miguel Ángel Ramírez Pérez (marp0604)
+
+> Desarrollador multiplataforma en Almería (España). Frontend con Astro, React y TypeScript; apps móviles para Android e iOS con Kotlin Multiplatform. Trabaja en Farmacias.com y acepta proyectos freelance de desarrollo web y apps.
+
+- Nombre: Miguel Ángel Ramírez Pérez
+- Alias / marca: marp0604
+- Rol: Desarrollador Multiplataforma
+- Ubicación: Almería, Andalucía, España
+- Empresa actual: Farmacias.com (desde febrero de 2026)
+- Disponibilidad: acepta proyectos freelance
+- Idioma: español
+
+## Servicios
+
+- Webs y landing pages: sitios rápidos, cuidados y con buen SEO técnico, con Astro, React y TypeScript.
+- Apps móvil: apps nativas y multiplataforma con Kotlin Multiplatform (KMP), desde una única base de código para Android e iOS.
+- Producto propio y a medida: VexelPlayPro es su producto SaaS, ya validado en producción. También construye plataformas completas desde cero, con backend, usuarios y lógica de negocio.
+
+## Experiencia
+
+- Farmacias.com — Desarrollador (feb. 2026 – presente, Aguadulce, Almería). Mantenimiento, mejora y nuevas funcionalidades en una plataforma e-commerce de farmacia.
+- Adelantia IT Solutions — Técnico en prácticas (mar. 2022 – jun. 2022, Almería). Administración de equipos, sistemas, redes y soporte técnico.
+
+## Formación
+
+- Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (CFGS DAM), IES Celia Viñas, 2022 – 2025.
+- Técnico en Sistemas Microinformáticos y Redes (CFGM SMR), IES Celia Viñas, 2019 – 2022.
+
+## Proyectos
+
+- [VexelPlayPro](https://vexelplaypro.com): plataforma propia que empezó en web y crece hacia móvil con Kotlin Multiplatform. React, TypeScript, KMP.
+- [Spider-Man: Brand New Day](https://spidermanbrandnewday.es): colaboración freelance en la web promocional de la película, junto al desarrollador y streamer Midudev. Astro, TypeScript.
+- [marp0604-portfolio](https://github.com/marp0604/marp0604-portfolio): este portfolio, con Astro, CSS propio y fuentes auto-alojadas. Código abierto.
+
+## Stack
+
+- Frontend: HTML, CSS, JavaScript, TypeScript, React, Astro
+- Herramientas: Git, GitHub, Vite, Node.js, npm
+- Explorando: Kotlin Multiplatform, Tailwind CSS, Figma
+
+## Contacto
+
+- [Contacto en la web](https://marp0604.com/#contacto)
+- [LinkedIn](https://linkedin.com/in/marp0604)
+- [GitHub](https://github.com/marp0604)
+- [CV en PDF](https://marp0604.com/CV-Miguel-Angel-Ramirez-Perez.pdf)

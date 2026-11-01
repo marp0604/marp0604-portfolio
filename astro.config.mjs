@@ -6,7 +6,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://marp0604.com',
   output: 'static',
-  integrations: [sitemap()],
+  // lastmod = fecha del build: indica a los buscadores cuándo cambió la página.
+  integrations: [sitemap({ lastmod: new Date() })],
   // Evita que Astro inyecte el script como inline (lo bloquearía la CSP
   // script-src 'self'). Forzamos su emisión como archivo externo del mismo origen.
   vite: {

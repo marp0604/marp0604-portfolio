@@ -6,10 +6,15 @@ import IconGitHub from '../components/IconGitHub.astro';
 import IconLinkedIn from '../components/IconLinkedIn.astro';
 import IconCV from '../components/IconCV.astro';
 import LogoMark from '../components/LogoMark.astro';
+// Fuente del titular (LCP): se precarga para que no espere a descubrirse en el CSS.
+import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 
 const cvUrl = "/CV-Miguel-Angel-Ramirez-Perez.pdf";
 
 const rol = "Desarrollador Multiplataforma";
+// Título de Google: la marca marp0604 y la intención de búsqueda (freelance + ciudad),
+// en ~65 caracteres para que no se corte.
+const titulo = "Miguel Ángel Ramírez (marp0604) — Desarrollador freelance en Almería";
 const descripcion = "Portfolio de Miguel Ángel Ramírez Pérez (marp0604), desarrollador multiplataforma en Almería. Disponible para proyectos freelance: web con Astro y React, móvil con Kotlin Multiplatform.";
 const canonicalURL = "https://marp0604.com/";
 const ogImage = "https://marp0604.com/og-image.jpg";
@@ -132,18 +137,83 @@ const stackGrupos = [
   },
 ];
 
+// Datos estructurados (schema.org) en un @graph: página de perfil, sitio, persona y
+// proyectos, enlazados por @id. Salen de los mismos arrays que pintan la página, así
+// que Google y los buscadores con IA leen lo mismo que ve el visitante.
+// El email no va aquí a propósito: en la página está ofuscado.
+const personaId = `${canonicalURL}#persona`;
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Miguel Ángel Ramírez Pérez",
-  "alternateName": "marp0604",
-  "url": canonicalURL,
-  "jobTitle": "Desarrollador Multiplataforma",
-  "description": descripcion,
-  "knowsAbout": ["HTML", "CSS", "JavaScript", "TypeScript", "Astro", "React", "Node.js", "Git", "Kotlin Multiplatform"],
-  "nationality": "ES",
-  "image": "https://marp0604.com/perfil.jpg",
-  "sameAs": ["https://github.com/marp0604", "https://linkedin.com/in/marp0604"],
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": `${canonicalURL}#perfil`,
+      "url": canonicalURL,
+      "name": titulo,
+      "description": descripcion,
+      "inLanguage": "es-ES",
+      "dateModified": new Date().toISOString(),
+      "isPartOf": { "@id": `${canonicalURL}#web` },
+      "mainEntity": { "@id": personaId },
+      "primaryImageOfPage": { "@type": "ImageObject", "url": ogImage, "width": 1200, "height": 630 },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${canonicalURL}#web`,
+      "url": canonicalURL,
+      "name": "marp0604",
+      "alternateName": "Miguel Ángel Ramírez Pérez",
+      "inLanguage": "es-ES",
+      "publisher": { "@id": personaId },
+    },
+    {
+      "@type": "Person",
+      "@id": personaId,
+      "name": "Miguel Ángel Ramírez Pérez",
+      "givenName": "Miguel Ángel",
+      "familyName": "Ramírez Pérez",
+      "alternateName": "marp0604",
+      "url": canonicalURL,
+      "image": { "@type": "ImageObject", "url": `${canonicalURL}perfil.jpg`, "width": 460, "height": 460 },
+      "jobTitle": rol,
+      "description": descripcion,
+      "address": { "@type": "PostalAddress", "addressLocality": "Almería", "addressRegion": "Andalucía", "addressCountry": "ES" },
+      "nationality": { "@type": "Country", "name": "España" },
+      "knowsLanguage": "es",
+      "worksFor": { "@type": "Organization", "name": "Farmacias.com" },
+      "alumniOf": { "@type": "EducationalOrganization", "name": "IES Celia Viñas", "address": { "@type": "PostalAddress", "addressLocality": "Almería", "addressCountry": "ES" } },
+      "hasCredential": formacion.map((f) => ({
+        "@type": "EducationalOccupationalCredential",
+        "name": `${f.kind.startsWith("CFGS") ? "Técnico Superior" : "Técnico"} en ${f.titulo}`,
+        "credentialCategory": f.kind.startsWith("CFGS") ? "Ciclo Formativo de Grado Superior" : "Ciclo Formativo de Grado Medio",
+        "recognizedBy": { "@type": "EducationalOrganization", "name": f.centro },
+      })),
+      "knowsAbout": [...stackGrupos.flatMap((g) => g.skills), "Desarrollo web", "Desarrollo de apps móviles", "SEO técnico"],
+      "makesOffer": servicios.map((s) => ({
+        "@type": "Offer",
+        "itemOffered": { "@type": "Service", "name": s.titulo, "description": s.descripcion, "provider": { "@id": personaId } },
+      })),
+      "sameAs": ["https://github.com/marp0604", "https://linkedin.com/in/marp0604"],
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${canonicalURL}#proyectos`,
+      "name": "Proyectos de Miguel Ángel Ramírez Pérez",
+      "itemListElement": proyectos.map((p, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "CreativeWork",
+          "name": p.titulo,
+          "description": p.descripcion,
+          "url": (p.links.find((l) => l.tipo === "web") ?? p.links[0]).url,
+          "keywords": p.tecnologias.join(", "),
+          // En las colaboraciones freelance participa; los propios los crea él
+          [p.badge === "Freelance" ? "contributor" : "creator"]: { "@id": personaId },
+        },
+      })),
+    },
+  ],
 };
 ---
 
@@ -153,16 +223,21 @@ const jsonLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Miguel Ángel Ramírez Pérez (marp0604) — {rol}</title>
+    <title>{titulo}</title>
     <meta name="description" content={descripcion} />
-    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Miguel Ángel Ramírez Pérez" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="preload" href={interWoff2} as="font" type="font/woff2" crossorigin />
 
     <meta name="theme-color" content="#16181d" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
+    <meta property="profile:first_name" content="Miguel Ángel" />
+    <meta property="profile:last_name" content="Ramírez Pérez" />
+    <meta property="profile:username" content="marp0604" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={`Miguel Ángel Ramírez Pérez (marp0604) — ${rol}`} />
+    <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
@@ -173,9 +248,10 @@ const jsonLd = {
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
-    <meta name="twitter:title" content={`Miguel Ángel Ramírez Pérez (marp0604) — ${rol}`} />
+    <meta name="twitter:title" content={titulo} />
     <meta name="twitter:description" content={descripcion} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Miguel Ángel Ramírez Pérez — Construyo productos útiles para mi entorno" />
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -266,12 +342,15 @@ const jsonLd = {
         <div class="bg-grid" aria-hidden="true"></div>
         <div class="glow-blob" aria-hidden="true"></div>
         <div class="container">
-          <p class="eyebrow reveal">
-            <span>Miguel Ángel Ramírez Pérez</span>
-            <span class="accent"><span aria-hidden="true">// </span>desarrollador multiplataforma</span>
-          </p>
-          <h1 class="hero-title reveal">
-            Construyo productos <span class="accent">útiles</span> para mi entorno<span class="cursor" aria-hidden="true"></span>
+          {/* El nombre y el rol van dentro del h1 (para buscadores), con el mismo aspecto */}
+          <h1>
+            <span class="eyebrow reveal">
+              <span>Miguel Ángel Ramírez Pérez</span>
+              <span class="accent">desarrollador multiplataforma</span>
+            </span>
+            <span class="hero-title reveal">
+              Construyo productos <span class="accent">útiles</span> para mi entorno<span class="cursor" aria-hidden="true"></span>
+            </span>
           </h1>
           <div class="hero-lower reveal">
             <p class="hero-desc">
@@ -298,7 +377,7 @@ const jsonLd = {
       <div class="container">
 
         <section class="section" id="sobre-mi" aria-labelledby="title-sobre-mi">
-          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-sobre-mi">sobre mí</span></p>
+          <h2 class="section-eyebrow reveal"><span id="title-sobre-mi">sobre mí</span></h2>
           <div class="about-grid">
             <div class="about-photo reveal">
               <img
@@ -351,7 +430,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="servicios" aria-labelledby="title-servicios">
-          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span>servicios</span></p>
+          <p class="section-eyebrow reveal"><span>servicios</span></p>
           <h2 class="section-title reveal" id="title-servicios">En qué puedo ayudarte</h2>
           <div class="serv-grid">
             {servicios.map((s) => (
@@ -373,7 +452,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="experiencia" aria-labelledby="title-experiencia">
-          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-experiencia">experiencia</span></p>
+          <h2 class="section-eyebrow reveal"><span id="title-experiencia">experiencia</span></h2>
           <div class="exp-list">
             {experiencia.map((e) => (
               <article class="exp-card reveal">
@@ -403,7 +482,7 @@ const jsonLd = {
         </section>
 
         <section class="section" id="formacion" aria-labelledby="title-formacion">
-          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-formacion">formación</span></p>
+          <h2 class="section-eyebrow reveal"><span id="title-formacion">formación</span></h2>
           <div class="edu-grid">
             {formacion.map((f) => (
               <article class="edu-card reveal">
@@ -419,14 +498,14 @@ const jsonLd = {
         </section>
 
         <section class="section" id="proyectos" aria-labelledby="title-proyectos">
-          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-proyectos">proyectos</span></p>
+          <h2 class="section-eyebrow reveal"><span id="title-proyectos">proyectos</span></h2>
           <div class="proyecto-list">
             {proyectos.map((p) => (
               <article class="proyecto-item reveal">
                 <span class="proyecto-num" aria-hidden="true">{p.num}</span>
                 <div>
                   <div class="proyecto-title-row">
-                    <span class="proyecto-name">{p.titulo}</span>
+                    <h3 class="proyecto-name">{p.titulo}</h3>
                     {p.badge && <span class="proyecto-badge">{p.badge}</span>}
                   </div>
                   <p class="proyecto-desc">{p.descripcion}</p>
@@ -486,11 +565,11 @@ const jsonLd = {
         </section>
 
         <section class="section" id="stack" aria-labelledby="title-stack">
-          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span id="title-stack">stack</span></p>
+          <h2 class="section-eyebrow reveal"><span id="title-stack">stack</span></h2>
           <div class="stack-grid">
             {stackGrupos.map((g) => (
               <div class="stack-card reveal">
-                <p class="stack-label"><span class="dot" aria-hidden="true"></span>{g.categoria}</p>
+                <h3 class="stack-label"><span class="dot" aria-hidden="true"></span>{g.categoria}</h3>
                 <ul class="stack-items" role="list">
                   {g.skills.map((s) => (
                     <li class={g.categoria === "Explorando" ? "is-explore" : ""}>
@@ -511,7 +590,7 @@ const jsonLd = {
         <div class="bg-grid" aria-hidden="true"></div>
         <div class="glow-blob" aria-hidden="true"></div>
         <div class="container">
-          <p class="section-eyebrow reveal"><span aria-hidden="true">//</span><span>contacto</span></p>
+          <p class="section-eyebrow reveal"><span>contacto</span></p>
           <h2 class="contact-title reveal" id="title-contacto">
             Hablemos de
             <span class="accent">tu proyecto<span class="cursor" aria-hidden="true"></span></span>
