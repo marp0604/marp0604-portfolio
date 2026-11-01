@@ -175,6 +175,14 @@ nav.scrolled {
 .nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+/* Con el menú abierto, la barra sube por encima del overlay: el z-index de la
+   hamburguesa solo cuenta dentro del nav, así que sin esto el overlay tapa la X.
+   El logo de la barra se oculta para no duplicar el del overlay. */
+nav:has(.nav-hamburger[aria-expanded="true"]) {
+  z-index: 160; background: transparent; border-bottom-color: transparent;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+nav:has(.nav-hamburger[aria-expanded="true"]) .nav-logo { visibility: hidden; }
 
 .nav-mobile-overlay {
   display: none; position: fixed; inset: 0; z-index: 150;

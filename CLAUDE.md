@@ -34,7 +34,7 @@ Requiere Node.js. No hay tests ni linter configurados; la verificación es
   (con focus-trap y bloqueo de scroll).
 - `src/components/Icon*.astro` — iconos SVG inline (GitHub, LinkedIn, CV).
 - `src/components/LogoMark.astro` — logo `>MA_` como texto (escala con `font-size`).
-- `public/` — `perfil.jpg` (foto real con fondo de marca), `og-image.jpg`
+- `public/` — `perfil.jpg` (foto real original, 460×460), `og-image.jpg`
   (1200×630), CV en PDF, `robots.txt`, favicons (`favicon.ico`, `favicon-32.png`,
   `apple-touch-icon.png`, `icon-192/512.png` + `site.webmanifest`) y
   `brand/` con los logos PNG del kit.
