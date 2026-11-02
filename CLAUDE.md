@@ -26,12 +26,15 @@ Requiere Node.js. No hay tests ni linter configurados; la verificación es
 
 ## Estructura
 - `src/pages/index.astro` — **toda la página**. El contenido (experiencia,
-  formación, proyectos, stack) vive en **arrays en el frontmatter**; edítalos ahí.
+  formación, servicios, proyectos, stack, preguntas frecuentes) vive en **arrays
+  en el frontmatter**; edítalos ahí.
   Incluye `<head>` (SEO/OG/Twitter), JSON-LD (`@graph` generado desde esos
   arrays), e importa las fuentes.
 - `src/styles/global.css` — todo el estilo y los tokens de diseño.
-- `src/scripts/main.js` — JS del cliente: desofuscación del email, nav con
-  blur al hacer scroll, reveals al scroll (IntersectionObserver) y menú móvil
+- `src/pages/404.astro` — página de error con la marca (sin JS, `noindex`).
+- `src/scripts/main.js` — JS del cliente: desofuscación del email, botón «Copiar
+  email» (solo con JS y portapapeles), nav con blur al hacer scroll y sección
+  activa (`aria-current`), reveals al scroll (IntersectionObserver) y menú móvil
   (con focus-trap y bloqueo de scroll).
 - `src/components/Icon*.astro` — iconos SVG inline (GitHub, LinkedIn, CV).
 - `src/components/LogoMark.astro` — logo `>MA_` como texto (escala con `font-size`).
@@ -74,9 +77,12 @@ hay que regenerarla.
   de terceros) sin actualizar la CSP — se bloquearán. Por eso Astro emite el
   script como archivo externo (`assetsInlineLimit: 0` en `astro.config.mjs`) y las
   fuentes van auto-alojadas. Tampoco uses atributos `style=""` inline (los bloquea
-  `style-src 'self'`): todo el estilo, en clases de `global.css`.
+  `style-src 'self'`): todo el estilo, en clases de `global.css`. Las imágenes
+  también solo del propio dominio (`img-src 'self' data:`).
 - **El contenido siempre visible sin JS**: los `.reveal` parten visibles; el JS
   añade `.js-ready` al `<body>` para activar la animación. No romper ese patrón.
+  La portada (hero) no lleva `.reveal`: se pinta al instante (LCP/Speed Index).
+  Lo que solo funciona con JS va con el atributo `hidden` y lo muestra `main.js`.
 - **Email ofuscado**: se compone en `main.js`; hay un `<noscript>` con el `mailto`
   de respaldo. Email real: `contacto@marp0604.com`.
 - Textos en **español**.
@@ -94,14 +100,20 @@ directo a master para cambios triviales que quieras publicar ya).
   canonical, `robots` con `max-image-preview:large`, OG tipo `profile` y Twitter.
 - Encabezados: el `<h1>` incluye nombre y rol (el eyebrow del hero) además del
   lema; cada sección tiene su `<h2>` (las etiquetas `// tema`) y proyectos y
-  grupos del stack son `<h3>`. Mantener esa jerarquía al añadir secciones.
+  grupos del stack son `<h3>`, igual que las preguntas frecuentes. Mantener esa jerarquía al añadir secciones.
 - JSON-LD `@graph`: `ProfilePage` → `Person` (con `alternateName: "marp0604"`,
-  formación, empresa, servicios como `makesOffer`), `WebSite` e `ItemList` de
-  proyectos. Se genera desde los arrays del frontmatter. El email NO va en el
+  formación, empresa, servicios como `makesOffer`), `WebSite`, `ItemList` de
+  proyectos y `FAQPage` (de las preguntas frecuentes). Se genera desde los arrays del frontmatter. El email NO va en el
   JSON-LD ni en `llms.txt` (en la página está ofuscado).
 - GEO: `public/llms.txt` resume el perfil en Markdown para asistentes de IA y
   `robots.txt` permite explícitamente sus bots. **`llms.txt` es estático: si
   cambia el contenido (experiencia, proyectos, servicios…), actualízalo a mano.**
+- Preguntas frecuentes (array `preguntas`): acordeón nativo `<details>` (funciona
+  sin JS; el texto sigue en el HTML). Redactadas como búsquedas reales (servicio +
+  Almería, Android/iOS, presupuesto) con la respuesta directa en la primera frase.
+  Solo datos que ya están en la web (nada de precios ni plazos inventados) y en
+  texto plano porque se reutilizan en el JSON-LD y en `llms.txt` (cópialas allí
+  si cambian).
 - El sitio ya sale el primero en Google al buscar "marp0604". Para reindexar
   tras cambios grandes: Google Search Console → enviar sitemap / solicitar
   indexación.

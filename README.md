@@ -20,7 +20,7 @@ Desarrollador Multiplataforma — Frontend, Astro, TypeScript
 
 ## ¿Qué es esto?
 
-Mi portfolio personal, construido desde cero con **Astro** y **CSS vanilla**. Sin librerías de componentes, sin shortcuts. Todo el código es propio: animaciones con Canvas API, estilos sin frameworks, interacciones con TypeScript puro.
+Mi portfolio personal, construido desde cero con **Astro** y **CSS vanilla**. Sin librerías de componentes, sin shortcuts. Todo el código es propio: animaciones con CSS, estilos sin frameworks e interacciones con JavaScript ligero (sin dependencias).
 
 El objetivo fue construir algo rápido, limpio y que refleje cómo trabajo: con criterio, sin capas innecesarias.
 
@@ -33,7 +33,7 @@ El objetivo fue construir algo rápido, limpio y que refleje cómo trabajo: con 
 | Framework | [Astro 5](https://astro.build) | Zero JS por defecto, output estático, DX excelente |
 | Lenguaje | TypeScript 5 | Tipado estricto desde el inicio |
 | Estilos | CSS vanilla | Control total, sin overhead |
-| Animaciones | Canvas API + CSS custom | Sin dependencias externas |
+| Animaciones | CSS (transiciones y keyframes) + IntersectionObserver | Sin dependencias externas |
 | Tipografía | [Fontsource](https://fontsource.org) (auto-alojadas) | Inter + JetBrains Mono, según el kit de marca |
 | Deploy | Vercel | CI/CD automático desde `master` |
 
@@ -49,10 +49,13 @@ El objetivo fue construir algo rápido, limpio y que refleje cómo trabajo: con 
 │   ├── favicon.ico         # + favicon-32, apple-touch-icon, icon-192/512
 │   ├── site.webmanifest
 │   ├── brand/              # Logos >MA_ del kit de marca
+│   ├── llms.txt            # Resumen del perfil para asistentes de IA
 │   └── robots.txt
 ├── src/
 │   ├── pages/
-│   │   └── index.astro     # Página principal (todo en una sola página)
+│   │   ├── index.astro     # Página principal (todo en una sola página)
+│   │   └── 404.astro       # Página de error con la marca
+│   ├── scripts/main.js     # JS del cliente (email, nav, reveals, menú móvil)
 │   └── styles/             # CSS global y tokens de diseño
 ├── astro.config.mjs
 ├── vercel.json             # Headers de seguridad + config de deploy

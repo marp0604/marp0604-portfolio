@@ -38,6 +38,40 @@
 - Herramientas: Git, GitHub, Vite, Node.js, npm
 - Explorando: Kotlin Multiplatform, Tailwind CSS, Figma
 
+## Preguntas frecuentes
+
+### ¿Eres desarrollador freelance en Almería?
+
+Sí. Soy Miguel Ángel Ramírez Pérez (marp0604), desarrollador multiplataforma en Almería (Andalucía, España). Trabajo como desarrollador en Farmacias.com y, en paralelo, acepto proyectos freelance de desarrollo web y de apps móviles.
+
+### ¿Qué servicios de desarrollo web ofreces?
+
+Desarrollo webs y landing pages rápidas, cuidadas y con buen SEO técnico, hechas con Astro, React y TypeScript. Son sitios ligeros y preparados para que Google los entienda bien, como esta misma web.
+
+### ¿Desarrollas apps móviles para Android e iOS?
+
+Sí. Desarrollo apps nativas y multiplataforma con Kotlin Multiplatform (KMP), que permite tener una única base de código para Android e iOS. Es la tecnología con la que estoy llevando VexelPlayPro, mi producto propio, de la web al móvil.
+
+### ¿Qué es Kotlin Multiplatform y qué ventajas tiene?
+
+Kotlin Multiplatform (KMP) es una tecnología de JetBrains para compartir código entre Android, iOS y otras plataformas sin renunciar a la experiencia nativa. Se comparte la lógica de la app (y, si se quiere, también la interfaz con Compose Multiplatform), así que hay una sola base de código que mantener en lugar de dos.
+
+### ¿Puedes crear una plataforma o un SaaS a medida?
+
+Sí. Además de webs y apps, construyo plataformas completas desde cero, con backend, usuarios y lógica de negocio. Es lo que he hecho con VexelPlayPro, mi propio producto SaaS, ya validado en producción.
+
+### ¿Con qué tecnologías trabajas?
+
+En frontend, con Astro, React y TypeScript, sobre HTML, CSS y JavaScript. En móvil, con Kotlin Multiplatform. En el día a día uso Git, GitHub, Vite, Node.js y npm, y estoy explorando Tailwind CSS y Figma.
+
+### ¿Qué experiencia y formación tienes?
+
+Soy Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) y Técnico en Sistemas Microinformáticos y Redes (SMR), ambos por el IES Celia Viñas de Almería. Desde febrero de 2026 trabajo como desarrollador en Farmacias.com, sobre una plataforma de comercio electrónico real, y he colaborado como freelance en la web promocional de Spider-Man: Brand New Day junto a Midudev.
+
+### ¿Cómo puedo pedirte presupuesto?
+
+Escríbeme por email desde la sección de contacto de esta web o por LinkedIn, cuéntame qué necesitas y lo hablamos. Si antes quieres conocer mi trayectoria, puedes descargar mi CV en PDF.
+
 ## Contacto
 
 - [Contacto en la web](https://marp0604.com/#contacto)

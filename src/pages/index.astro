@@ -15,7 +15,8 @@ const rol = "Desarrollador Multiplataforma";
 // Título de Google: la marca marp0604 y la intención de búsqueda (freelance + ciudad),
 // en ~65 caracteres para que no se corte.
 const titulo = "Miguel Ángel Ramírez (marp0604) — Desarrollador freelance en Almería";
-const descripcion = "Portfolio de Miguel Ángel Ramírez Pérez (marp0604), desarrollador multiplataforma en Almería. Disponible para proyectos freelance: web con Astro y React, móvil con Kotlin Multiplatform.";
+// Meta description: ≤ 155 caracteres para que Google no la corte.
+const descripcion = "Miguel Ángel Ramírez Pérez (marp0604), desarrollador multiplataforma en Almería. Freelance: webs con Astro y React y apps móviles con Kotlin Multiplatform.";
 const canonicalURL = "https://marp0604.com/";
 const ogImage = "https://marp0604.com/og-image.jpg";
 
@@ -137,6 +138,46 @@ const stackGrupos = [
   },
 ];
 
+// Preguntas frecuentes: redactadas como las buscaría un cliente (servicio + ciudad,
+// Android/iOS, presupuesto…) y con la respuesta directa en la primera frase, que es
+// lo que citan Google y las IAs. Solo usan datos que ya cuenta la web: nada de
+// precios ni plazos inventados. Van en texto plano porque alimentan también el
+// FAQPage del JSON-LD.
+const preguntas = [
+  {
+    pregunta: "¿Eres desarrollador freelance en Almería?",
+    respuesta: "Sí. Soy Miguel Ángel Ramírez Pérez (marp0604), desarrollador multiplataforma en Almería (Andalucía, España). Trabajo como desarrollador en Farmacias.com y, en paralelo, acepto proyectos freelance de desarrollo web y de apps móviles.",
+  },
+  {
+    pregunta: "¿Qué servicios de desarrollo web ofreces?",
+    respuesta: "Desarrollo webs y landing pages rápidas, cuidadas y con buen SEO técnico, hechas con Astro, React y TypeScript. Son sitios ligeros y preparados para que Google los entienda bien, como esta misma web.",
+  },
+  {
+    pregunta: "¿Desarrollas apps móviles para Android e iOS?",
+    respuesta: "Sí. Desarrollo apps nativas y multiplataforma con Kotlin Multiplatform (KMP), que permite tener una única base de código para Android e iOS. Es la tecnología con la que estoy llevando VexelPlayPro, mi producto propio, de la web al móvil.",
+  },
+  {
+    pregunta: "¿Qué es Kotlin Multiplatform y qué ventajas tiene?",
+    respuesta: "Kotlin Multiplatform (KMP) es una tecnología de JetBrains para compartir código entre Android, iOS y otras plataformas sin renunciar a la experiencia nativa. Se comparte la lógica de la app (y, si se quiere, también la interfaz con Compose Multiplatform), así que hay una sola base de código que mantener en lugar de dos.",
+  },
+  {
+    pregunta: "¿Puedes crear una plataforma o un SaaS a medida?",
+    respuesta: "Sí. Además de webs y apps, construyo plataformas completas desde cero, con backend, usuarios y lógica de negocio. Es lo que he hecho con VexelPlayPro, mi propio producto SaaS, ya validado en producción.",
+  },
+  {
+    pregunta: "¿Con qué tecnologías trabajas?",
+    respuesta: "En frontend, con Astro, React y TypeScript, sobre HTML, CSS y JavaScript. En móvil, con Kotlin Multiplatform. En el día a día uso Git, GitHub, Vite, Node.js y npm, y estoy explorando Tailwind CSS y Figma.",
+  },
+  {
+    pregunta: "¿Qué experiencia y formación tienes?",
+    respuesta: "Soy Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) y Técnico en Sistemas Microinformáticos y Redes (SMR), ambos por el IES Celia Viñas de Almería. Desde febrero de 2026 trabajo como desarrollador en Farmacias.com, sobre una plataforma de comercio electrónico real, y he colaborado como freelance en la web promocional de Spider-Man: Brand New Day junto a Midudev.",
+  },
+  {
+    pregunta: "¿Cómo puedo pedirte presupuesto?",
+    respuesta: "Escríbeme por email desde la sección de contacto de esta web o por LinkedIn, cuéntame qué necesitas y lo hablamos. Si antes quieres conocer mi trayectoria, puedes descargar mi CV en PDF.",
+  },
+];
+
 // Datos estructurados (schema.org) en un @graph: página de perfil, sitio, persona y
 // proyectos, enlazados por @id. Salen de los mismos arrays que pintan la página, así
 // que Google y los buscadores con IA leen lo mismo que ve el visitante.
@@ -213,6 +254,19 @@ const jsonLd = {
         },
       })),
     },
+    {
+      "@type": "FAQPage",
+      "@id": `${canonicalURL}#preguntas-frecuentes`,
+      "url": `${canonicalURL}#preguntas-frecuentes`,
+      "inLanguage": "es-ES",
+      "isPartOf": { "@id": `${canonicalURL}#web` },
+      "about": { "@id": personaId },
+      "mainEntity": preguntas.map((q) => ({
+        "@type": "Question",
+        "name": q.pregunta,
+        "acceptedAnswer": { "@type": "Answer", "text": q.respuesta },
+      })),
+    },
   ],
 };
 ---
@@ -277,6 +331,7 @@ const jsonLd = {
           <li><a href="#formacion">Formación</a></li>
           <li><a href="#proyectos">Proyectos</a></li>
           <li><a href="#stack">Stack</a></li>
+          <li><a href="#preguntas-frecuentes">FAQ</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
         <a href="#contacto" class="nav-available" aria-label="Disponible para proyectos freelance — ir a contacto">
@@ -317,6 +372,7 @@ const jsonLd = {
         <li><a href="#formacion" class="nav-mobile-link">Formación</a></li>
         <li><a href="#proyectos" class="nav-mobile-link">Proyectos</a></li>
         <li><a href="#stack" class="nav-mobile-link">Stack</a></li>
+        <li><a href="#preguntas-frecuentes" class="nav-mobile-link">FAQ</a></li>
         <li><a href="#contacto" class="nav-mobile-link">Contacto</a></li>
       </ul>
       <div class="nav-mobile-footer">
@@ -342,17 +398,18 @@ const jsonLd = {
         <div class="bg-grid" aria-hidden="true"></div>
         <div class="glow-blob" aria-hidden="true"></div>
         <div class="container">
-          {/* El nombre y el rol van dentro del h1 (para buscadores), con el mismo aspecto */}
+          {/* El nombre y el rol van dentro del h1 (para buscadores), con el mismo aspecto.
+              La portada no lleva .reveal: se pinta al instante (mejor LCP y Speed Index). */}
           <h1>
-            <span class="eyebrow reveal">
+            <span class="eyebrow">
               <span>Miguel Ángel Ramírez Pérez</span>
               <span class="accent">desarrollador multiplataforma</span>
             </span>
-            <span class="hero-title reveal">
+            <span class="hero-title">
               Construyo productos <span class="accent">útiles</span> para mi entorno<span class="cursor" aria-hidden="true"></span>
             </span>
           </h1>
-          <div class="hero-lower reveal">
+          <div class="hero-lower">
             <p class="hero-desc">
               Frontend sólido, arquitectura pensada. Del web al móvil con <strong>Kotlin Multiplatform</strong>. Desde Almería, España.
             </p>
@@ -364,7 +421,7 @@ const jsonLd = {
               <a href="#contacto" class="btn btn-ghost">Contactar</a>
             </div>
           </div>
-          <div class="hero-foot reveal" aria-hidden="true">
+          <div class="hero-foot" aria-hidden="true">
             <span class="hero-scroll">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
               Scroll
@@ -583,6 +640,35 @@ const jsonLd = {
           </div>
         </section>
 
+        <section class="section" id="preguntas-frecuentes" aria-labelledby="title-preguntas-frecuentes">
+          <div class="faq-grid">
+            <div class="faq-intro reveal">
+              <p class="section-eyebrow"><span>dudas</span></p>
+              <h2 class="section-title" id="title-preguntas-frecuentes">Preguntas frecuentes sobre trabajar conmigo</h2>
+              <p class="faq-intro-text">¿Tu duda no está aquí? Escríbeme y lo hablamos.</p>
+              <a href="#contacto" class="btn btn-ghost">
+                Hacer otra pregunta
+                <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+            {/* Acordeón nativo (<details>): se abre sin JS y el texto sigue en el HTML para
+                buscadores. Con name="faq" solo queda una abierta a la vez; la primera viene
+                abierta como muestra. */}
+            <div class="faq-list">
+              {preguntas.map((q, i) => (
+                <details class="faq-item reveal" name="faq" open={i === 0}>
+                  <summary>
+                    <span class="faq-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                    <h3 class="faq-q">{q.pregunta}</h3>
+                    <span class="faq-icon" aria-hidden="true"></span>
+                  </summary>
+                  <p class="faq-a">{q.respuesta}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
       </div>
 
       <section class="contact" id="contacto" aria-labelledby="title-contacto">
@@ -610,6 +696,12 @@ const jsonLd = {
                 <span class="arrow" aria-hidden="true">↗</span>
               </a>
             </noscript>
+            {/* Alternativa al mailto para quien no tiene programa de correo: main.js lo
+                muestra solo si hay JS y portapapeles */}
+            <button id="copy-email-btn" class="btn btn-ghost" type="button" hidden>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span id="copy-email-text" aria-live="polite">Copiar email</span>
+            </button>
             <a
               href="https://linkedin.com/in/marp0604"
               target="_blank"
@@ -643,7 +735,7 @@ const jsonLd = {
     <footer>
       <div class="container">
         <div class="footer-grid">
-          <span>© 2026 Miguel Ángel Ramírez Pérez</span>
+          <span>© {new Date().getFullYear()} Miguel Ángel Ramírez Pérez</span>
           <span class="footer-mid">hecho con <span class="footer-heart" aria-label="amor">♥</span> en Almería</span>
           <a
             href="https://github.com/marp0604/marp0604-portfolio"
